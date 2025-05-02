@@ -1,14 +1,14 @@
-import Header from '@/components/Header';
-import Navbar from '@/components/Navbar';
 import { ReactNode } from 'react'
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const layout = ({ children }: { children: ReactNode }) => {
     return (
         <main className=''>
             <div className='mx-auto'>
                 <Navbar />
-                <Header />
                 <div>{children}</div>
+                <Footer />
             </div>
         </main>
     )
