@@ -4,7 +4,15 @@
 
 :root {
     --background: #ffffff;
-    --foreground: #171717;
+    --foreground: linear-gradient(
+        225deg,
+        hsl(321deg 68% 16%) 0%,
+        hsl(299deg 69% 9%) 12%,
+        hsl(241deg 47% 11%) 35%,
+        hsl(241deg 47% 11%) 59%,
+        hsl(299deg 69% 9%) 84%,
+        hsl(321deg 68% 16%) 100%
+    );
     scroll-behavior: smooth;
 }
 
@@ -15,7 +23,15 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #041224;
+        --background: linear-gradient(
+            225deg,
+            hsl(321deg 68% 16%) 0%,
+            hsl(299deg 69% 9%) 12%,
+            hsl(241deg 47% 11%) 35%,
+            hsl(241deg 47% 11%) 59%,
+            hsl(299deg 69% 9%) 84%,
+            hsl(321deg 68% 16%) 100%
+        );
         --foreground: #ffffff;
     }
 }
