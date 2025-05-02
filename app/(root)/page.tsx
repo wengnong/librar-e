@@ -1,13 +1,13 @@
-import { About } from "@/components/home/About";
-import Featured from "@/components/home/Featured";
-import Header from "@/components/home/Header";
-import ReaderChoice from "@/components/home/ReaderChoice";
-import Review from "@/components/home/Review";
-import Trending from "@/components/home/Trending";
-import { sampleBooks } from "@/constants";
+import About from "@/components/home/About"
+import Featured from "@/components/home/Featured"
+import Header from "@/components/home/Header"
+import ReaderChoice from "@/components/home/ReaderChoice"
+import Review from "@/components/home/Review"
+import Trending from "@/components/home/Trending"
+
+import { sampleBooks } from "@/constants"
 
 const Home = () => {
-
     return (
         <>
             <div className='relative'>
@@ -31,7 +31,7 @@ const Home = () => {
                 <Review />
             </div>
         </>
-    );
+    )
 }
 
 export default Home
