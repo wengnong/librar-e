@@ -24,7 +24,7 @@ const Header = () => {
                     <input
                         type="text"
                         placeholder="What are you looking for today ?"
-                        className="paytone-one-regular text-xs py-3 px-8 border-5 border-[#EAB139] text-[#EAB139] rounded-full p-2 w-[70vw] bg-[#FFFFFF] focus:outline-none"
+                        className="paytone-one-regular text-md py-3 px-8 border-5 border-[#EAB139] text-[#EAB139] rounded-full p-2 w-[70vw] bg-[#FFFFFF] focus:outline-none"
                     />
                 </div>
 

@@ -4,50 +4,48 @@ import Link from 'next/link'
 
 const Featured = ({ title, author, year, description, cover }: FeaturedBook) => {
     return (
-        <div className='relative flex flex-col justify-center items-center w-full'>
-            <h1 className='z-20 paytone-one-regular text-5xl bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text shadow-md'>LOVED RIGHT NOW</h1>
+        <div className='relative flex flex-col justify-center items-center w-full px-4'>
+            <h1 className='z-20 paytone-one-regular text-3xl md:text-5xl text-center bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text shadow-md'>LOVED RIGHT NOW</h1>
 
             <div className='relative mt-6 w-full flex justify-center'>
-                {/* Container */}
-                <div className='flex flex-col justify-start bg-[#030C19] px-12 py-8 rounded-[10px] mx-40 max-w-6xl shadow-lg'>
-                    <h1 className='passion-one-black text-8xl uppercase'>{title}</h1>
-                    <span className='-mt-2 passion-one-regular text-2xl text-[#EAB139]'>by {author} <span className='text-[#E78B48]'>({year})</span></span>
-                    <span className='mt-6 w-1/2 text-justify text-lg'>{description}</span>
+                <div className='flex flex-col-reverse lg:flex-row justify-start md:items-center bg-[#030C19] px-6 md:px-12 py-8 rounded-[10px] mx-4 md:mx-40 max-w-6xl shadow-lg gap-8'>
 
-                    {/* Buttons */}
-                    <div className='flex flex-row mt-8 gap-8 items-center'>
+                    {/* Content */}
+                    <div className='flex-1'>
+                        <h1 className='passion-one-black text-5xl md:text-8xl uppercase'>{title}</h1>
+                        <span className='-mt-2 passion-one-regular text-xl md:text-2xl text-[#EAB139]'>by {author} <span className='text-[#E78B48]'>({year})</span>
+                        </span>
+                        <p className='mt-6 text-justify text-base md:text-lg'>{description}</p>
+
+                        {/* Preview (book detail) button */}
                         <Link href='/'>
-                            <button className='cursor-pointer border-2 bg-[#EAB139] py-2 px-8 rounded-[10px] paytone-one-regular text-md hover:bg-[#040a11] text-[#EAB139] hover:text-[#FFFFFF] duration-250 transition-all flex items-center'>
+                            <button className='mt-8 cursor-pointer border-2 bg-[#EAB139] py-2 px-6 md:px-8 rounded-[10px] paytone-one-regular text-sm md:text-md hover:bg-[#040a11] text-[#EAB139] hover:text-[#FFFFFF] duration-250 transition-all flex items-center'>
                                 <span className='text-[#FFFFFF]'>PREVIEW</span>
                                 <Image
                                     src="/icons/right-arrow.svg"
                                     width={0}
                                     height={0}
                                     alt="Arrow Right"
-                                    className="w-6 h-6 ml-1"
+                                    className="w-5 h-5 ml-1"
                                 />
                             </button>
                         </Link>
+                    </div>
 
+                    {/* Book cover */}
+                    <div className='flex justify-center md:justify-end items-center flex-1'>
                         <Link href='/'>
-                            <button className='cursor-pointer border-2 text-[#EAB139] py-2 px-8 rounded-[10px] paytone-one-regular text-md hover:text-[#FFFFFF] duration-250 transition-all'>
-                                <span className='text-[#FFFFFF]'>Borrow Book</span>
-                            </button>
+                            <div className='relative w-[210px] sm:w-[230px] md:w-[280px] lg:w-[320px] h-auto'>
+                                <Image 
+                                    src={cover}
+                                    alt="Book Cover"
+                                    width={5000}
+                                    height={0}
+                                    className='w-full h-auto object-contain shadow-lg rounded-[10px] rotate-3 hover:-rotate-3 transition-all duration-300 cursor-pointer'
+                                />
+                            </div>
                         </Link>
                     </div>
-                </div>
-                
-                {/* Featured image */}
-                <div className='absolute top-1/2 right-58 transform -translate-y-1/2 z-10'>
-                    <Link href='/'>
-                        <Image 
-                            src={cover}
-                            alt="Book Cover"
-                            width={5000}
-                            height={0}
-                            className='w-auto h-[480px] shadow-lg rounded-[10px] rotate-4 transform hover:-rotate-4 duration-400 transition-all cursor-pointer'
-                        />
-                    </Link>
                 </div>
             </div>
         </div>
