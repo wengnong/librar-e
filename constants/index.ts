@@ -41,15 +41,21 @@ export const adminSideBarLinks = [
 ];
 
 export const FIELD_NAMES = {
-    fullName: "Full name",
+    username: "Username",
     email: "Email",
     password: "Password",
 };
 
 export const FIELD_TYPES = {
-    fullName: "text",
+    username: "text",
     email: "email",
     password: "password",
+};
+
+export const FIELD_PLACEHOLDER = {
+    username: "thisismyusername",
+    email: "youremail@email.com",
+    password: "password123",
 };
 
 export const sampleBooks = [
