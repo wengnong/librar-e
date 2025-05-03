@@ -1,12 +1,18 @@
 import { ReactNode } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-const layout = ({ children }: { children: ReactNode }) => {
+const layout = async ({ children }: { children: ReactNode }) => {
+    const session = await auth();
+    
+    if (!session) redirect("/sign-in");
+
     return (
-        <main className=''>
+        <main>
             <div className='mx-auto'>
-                <Navbar />
+                <Navbar session={session} />
                 <div>{children}</div>
                 <Footer />
             </div>

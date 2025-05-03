@@ -20,3 +20,9 @@ interface FeaturedBook {
     description: string;
     cover: string;
 }
+
+interface AuthCredentials {
+    username: string;
+    email: string;
+    password: string;
+}
