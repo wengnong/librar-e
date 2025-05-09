@@ -1,43 +1,76 @@
-import React from 'react'
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
-
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Session } from 'next-auth'
-import { getInitials } from '@/lib/utils'
+import { cn, getInitials } from '@/lib/utils'
+import { adminSideBarLinks } from '@/constants'
+import { usePathname } from 'next/navigation'
 
 const Sidebar = ({ session } : { session: Session }) => {
-    return (
-        <div>
-            <Link href='/'><Image className="flex pt-4 pl-4" src="/images/Logo.png" width={140} height={140} alt="Librar-E Logo" /></Link>
+    const pathname = usePathname();
 
-            <hr className="my-5 h-1 border-t-0 bg-amber-200" />
-            <div className='flex-col p-6 pr-10'>
-                
-                <Link href='/my-profile' className='flex items-center justify-center'>
+    return (
+        <div className='min-h-screen bg-[#041224] text-white'>
+            <Link href='/'>
+                <Image
+                    className='flex pt-4 pl-4'
+                    src='/images/Logo.png'
+                    width={140}
+                    height={140}
+                    alt='Librar-E Logo'
+                />
+            </Link>
+
+            <hr className='my-5 h-1 border-t-0 bg-[#EAB139]' />
+
+            {/* Admin Profile */}
+            <div className='flex flex-col items-start px-6'>
+                <Link href='/my-profile'>
                     <Avatar>
                         <AvatarFallback className='bg-gray-500 text-white'>
-                            {getInitials(session?.user?.name || "IN")}
+                            {getInitials(session?.user?.name || 'IN')}
                         </AvatarFallback>
                     </Avatar>
                 </Link>
 
-                <h1 className='text-center text-shadow-white text-2xl'>Username</h1>
-                <p className='text-center'>emailuser@gmail.com</p>
-            </div>
-            <hr className="my-5 h-1 border-t-0 bg-amber-200" />
-
-            
-            <div className='flex-col pt-8 pr-3'>
-                <div className='h-10 w bg-[#F4CA85] text-center flex items-center justify-center rounded-r-lg text-black'>Users</div>
+                <div className='flex flex-col max-md:hidden'>
+                    <h1 className='mt-2 text-xl font-semibold'>{session?.user?.name || 'Username'}</h1>
+                    <p className='text-sm text-gray-300'>{session?.user?.email || 'emailuser@gmail.com'}</p>
+                </div>
             </div>
 
-            <div className='flex-col pt-3.5 pr-3'> 
-                <h2 className='h-10 bg-[#F4CA85] text-center flex justify-center items-center rounded-r-lg text-black'>Books</h2>
+            <hr className='my-5 h-1 border-t-0 bg-[#EAB139]' />
+
+            {/* Sidebar Content */}
+            <div className='mt-6 flex flex-col gap-3 px-4'>
+                {adminSideBarLinks.map((link) => {
+                    const isSelected = (link.route !== '/admin' && pathname.includes(link.route) && link.route.length > 1) || pathname === link.route;
+
+                    return (
+                        <Link href={link.route} key={link.route}>
+                            <div className={cn(
+                                'flex items-center gap-4 px-4 py-2 rounded-lg transition-colors hover:bg-amber-100 hover:text-black',
+                                isSelected && 'bg-[#EAB139] text-black'
+                            )}>
+                                <div className='relative w-5 h-5'>
+                                    <Image
+                                        src={link.img}
+                                        alt='icon'
+                                        fill
+                                        className={cn('object-contain', isSelected ? '' : 'invert')}
+                                    />
+                                </div>
+
+                                <p className='text-sm font-medium leading-none'>{link.text}</p>
+                            </div>
+                        </Link>
+                    )
+                })}
             </div>
         </div>
-            
     )
 }
 
