@@ -1,3 +1,4 @@
+import { auth } from "@/auth"
 import About from "@/components/home/About"
 import Featured from "@/components/home/Featured"
 import Header from "@/components/home/Header"
@@ -5,11 +6,23 @@ import ReaderChoice from "@/components/home/ReaderChoice"
 import Review from "@/components/home/Review"
 import Trending from "@/components/home/Trending"
 
-import { sampleBooks } from "@/constants"
 import { db } from "@/database/drizzle"
-import { users } from "@/database/schema"
+import { books, users } from "@/database/schema"
+import { desc } from "drizzle-orm"
 
 const Home = async () => {
+    const session = await auth();
+
+    const latestBooks = (await db
+        .select()
+        .from(books)
+        .limit(6)
+        .orderBy(desc(books.createdAt)))
+        .map(book => ({
+            ...book,
+            rating: Number(book.rating)
+        })) as Book[];
+
     const result = await db.select().from(users);
     console.log(JSON.stringify(result, null, 2));
 
@@ -18,19 +31,16 @@ const Home = async () => {
             <div className='relative'>
                 <Header />
                 <Featured
-                    title={sampleBooks[0].title} 
-                    author={sampleBooks[0].author} 
-                    year={sampleBooks[0].year}
-                    description={sampleBooks[0].description} 
-                    cover={sampleBooks[0].cover} 
+                    {...latestBooks[0]}
+                    // userId={session?.user?.id as string}
                 />
                 <Trending
                     title="Latest Trending"
-                    books={sampleBooks}
+                    books={latestBooks.slice(1)}
                 />
                 <ReaderChoice 
                     title="Most Reader&apos;s Choice"
-                    books={sampleBooks}
+                    books={latestBooks.slice(1)}
                 />
                 <About />
                 <Review />
