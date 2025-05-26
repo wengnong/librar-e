@@ -5,11 +5,8 @@ interface Book {
     year: number;
     genre: string;
     rating: number;
-    total_copies: number;
-    available_copies: number;
     cover: string;
     description: string;
-    summary: string;
     isLoanedBook?: boolean;
 }
 
@@ -25,4 +22,15 @@ interface AuthCredentials {
     username: string;
     email: string;
     password: string;
+}
+
+interface BookParams {
+    title: string;
+    author: string;
+    year: number;
+    genre: string;
+    rating: number;
+    coverUrl: string;
+    fileUrl: string;
+    description: string;
 }

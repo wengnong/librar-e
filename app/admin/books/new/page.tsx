@@ -1,3 +1,4 @@
+import BookForm from '@/components/admin/forms/BookForm'
 import Link from 'next/link'
 import React from 'react'
 
@@ -8,8 +9,8 @@ const page = () => {
                 <Link href='/admin/books'>Back to Books</Link>
             </button>
 
-            <div className='w-full overflow-hidden'>
-                {/* book form */}
+            <div className='w-full max-w-2xl overflow-hidden'>
+                <BookForm />
             </div>
         </div>
     )
