@@ -13,7 +13,7 @@ const Sidebar = ({ session } : { session: Session }) => {
     const pathname = usePathname();
 
     return (
-        <div className='min-h-screen bg-[#041224] text-white'>
+        <div className='w-full md:w-64 bg-[#041224] text-white h-full md:min-h-screen'>
             <Link href='/'>
                 <Image
                     className='flex pt-4 pl-4'

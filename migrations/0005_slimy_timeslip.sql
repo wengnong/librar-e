@@ -1,0 +1,1 @@
+ALTER TABLE "books" ADD COLUMN "year" integer NOT NULL;
