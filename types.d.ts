@@ -1,13 +1,14 @@
 interface Book {
-    id: number;
+    id: string;
     title: string;
     author: string;
     year: number;
     genre: string;
     rating: number;
-    cover: string;
+    coverUrl: string;
+    fileUrl: string;
     description: string;
-    isLoanedBook?: boolean;
+    createdAt: Date | null;
 }
 
 interface FeaturedBook {
@@ -15,7 +16,7 @@ interface FeaturedBook {
     author: string;
     year: number;
     description: string;
-    cover: string;
+    coverUrl: string;
 }
 
 interface AuthCredentials {

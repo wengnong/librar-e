@@ -1,24 +1,17 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import BookCover from "./BookCover";
 
-const BookCard = ({ id, title, author, rating, cover }: Book) => {
-    if (id === 0 || id > 10) {
-        return null;
-    }
-
+const BookCard = ({ id, title, author, rating, coverUrl }: Book) => {
     // Star rating system
     const star = rating > 4 ? '/icons/fourhalf-rating.png' : '/icons/threehalf-rating.png';
 
     return (
         <li className='w-[10rem] flex flex-row justify-center'>
             <Link href={`/books/${id}`} className='flex flex-col items-center w-full hover:scale-105 duration-150 transition-all'>
-                {/* Book cover */}
-                <Image 
-                    src={cover}
-                    alt="Book Cover"
-                    width={5000}
-                    height={0}
+                <BookCover 
+                    coverImage={coverUrl}
                     className='object-cover w-[10rem] h-[16rem] shadow-lg rounded-[10px] hover:brightness-50 hover:blur-[2px] hover:rotate-4 duration-150 transition-all'
                 />
 
