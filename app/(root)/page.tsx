@@ -16,7 +16,7 @@ const Home = async () => {
     const latestBooks = (await db
         .select()
         .from(books)
-        .limit(6)
+        .limit(7)
         .orderBy(desc(books.createdAt)))
         .map(book => ({
             ...book,
@@ -32,7 +32,7 @@ const Home = async () => {
                 <Header />
                 <Featured
                     {...latestBooks[0]}
-                    // userId={session?.user?.id as string}
+                    userId={session?.user?.id as string}
                 />
                 <Trending
                     title="Latest Trending"

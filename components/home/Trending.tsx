@@ -10,6 +10,10 @@ const Trending = ({
     title, 
     books 
 }: Props) => {
+    if (books.length < 2) {
+        return;
+    }
+
     return (
         <div className='relative flex flex-col justify-center items-center w-full my-40 px-10'>
             <h1 className='z-20 paytone-one-regular uppercase text-3xl text-[#EAB139] shadow-md'>{title}</h1>
