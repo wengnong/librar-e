@@ -6,6 +6,7 @@ import Image from 'next/image'
 import FeaturedBookCover from './FeaturedBookCover'
 
 const Featured = ({ 
+    id,
     title, 
     author, 
     year, 
@@ -28,7 +29,7 @@ const Featured = ({
                         <p className='mt-6 text-justify text-base md:text-lg'>{description}</p>
 
                         {/* Preview button */}
-                        <Link href='/'>
+                        <Link href={`/books/${id}`}>
                             <button className='mt-8 cursor-pointer border-2 bg-[#EAB139] py-2 px-6 md:px-8 rounded-[10px] paytone-one-regular text-sm md:text-md hover:bg-[#040a11] text-[#EAB139] hover:text-[#FFFFFF] duration-250 transition-all flex items-center'>
                                 <span className='text-[#FFFFFF]'>PREVIEW</span>
                                 <Image
