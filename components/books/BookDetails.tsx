@@ -1,12 +1,19 @@
-"use client"
-
 import Link from 'next/link'
 import React from 'react'
 import FeaturedBookCover from '../home/FeaturedBookCover'
-import { Button } from '../ui/button'
 import Image from 'next/image'
+import BorrowBook from './BorrowBook'
+import { db } from '@/database/drizzle'
+import { users } from '@/database/schema'
+import { eq } from 'drizzle-orm'
 
-const BookDetails = ({
+interface Props extends Book {
+    userId: string;
+}
+
+const BookDetails = async ({
+    id,
+    userId,
     title,
     author,
     year,
@@ -14,7 +21,13 @@ const BookDetails = ({
     rating,
     description,
     coverUrl
-}: Book) => {
+}: Props) => {
+    const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.id, userId))
+        .limit(1);
+
     const star = rating > 4 ? '/icons/fourhalf-rating.png' : '/icons/threehalf-rating.png'; 
 
     return (
@@ -66,11 +79,9 @@ const BookDetails = ({
                         </div>
 
                         {/* Borrow button */}
-                        <Link href="/" className='flex justify-center xl:justify-start'>
-                            <Button className='mt-4 cursor-pointer border-2 bg-[#EAB139] py-6 px-8 md:py-6 md:px-10 rounded-[10px] paytone-one-regular text-lg md:text-xl hover:bg-[#040a11] text-[#EAB139] hover:text-[#FFFFFF] duration-250 transition-all flex items-center'>
-                                <span className='text-[#FFFFFF]'>BORROW</span>
-                            </Button>
-                        </Link>
+                        {user &&
+                            <BorrowBook bookId={id} userId={userId} />
+                        }
                     </div>
 
                     {/* Book cover */}
