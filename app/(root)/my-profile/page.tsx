@@ -1,6 +1,7 @@
 import { signOut } from '@/auth';
 import React from 'react'
-import Image from 'next/image'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { cn, getInitials } from '@/lib/utils'
 import Link from 'next/link'
 import { auth } from '@/auth';
 import dayjs from 'dayjs';
@@ -30,16 +31,15 @@ const page = async () => {
 
             <div className='flex flex-col md:flex-row justify-center gap-5 mb-6 p-10'>
                 {/* Profile card */}
-                <div className='bg-[#EAB139] rounded-2xl p-5 h-50 content-center w-3xl grid grid-cols-2 gap-4 shadow-sm'>
-                    <Link href='/'>
-                        <Image
-                            className='flex pt-4 pl-4'
-                            src='/images/Logo.png'
-                            width={140}
-                            height={140}
-                            alt='Librar-E Logo'
-                        />
+                <div className='bg-[#EAB139] rounded-2xl p-4 sm:p-5 md:p-8 content-center w-full max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm'>
+                    <Link href='/my-profile'>
+                        <Avatar className='size-20'>
+                            <AvatarFallback className='bg-gray-500 text-white text-3xl flex items-center justify-center rounded-full leading-none'>
+                                {getInitials(session?.user?.name || 'IN')}
+                            </AvatarFallback>
+                        </Avatar>
                     </Link>
+
                     <div className='flex flex-col text-left'> 
                         <p className='text-black text-lg font-medium'>Name: {session?.user?.name || 'Guest'}</p>
                         <p className='text-black text-lg font-medium'>Email: {session?.user?.email || '-'}</p>
