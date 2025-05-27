@@ -177,13 +177,12 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
                     </div>
                 ) : (
                     <div className="text-center py-20">
-                        <div className="text-[#EAB139] text-6xl mb-4">📚</div>
                         <h3 className="text-xl font-semibold text-white mb-2">
                             No books found
                         </h3>
                         <p className="text-gray-300 mb-4">
                             {searchTerm ? 
-                                `No books match your search &quot;${searchTerm}&quot;` : 
+                                `No books match your search \"${searchTerm}\"` : 
                                 "Try adjusting your filters or search terms"
                             }
                         </p>

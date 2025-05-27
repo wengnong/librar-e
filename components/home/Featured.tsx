@@ -45,7 +45,7 @@ const Featured = ({
 
                     {/* Book cover */}
                     <div className='flex justify-center md:justify-end items-center flex-1'>
-                        <Link href='/'>
+                        <Link href={`/books/${id}`}>
                             <div className='w-[210px] sm:w-[230px] md:w-[280px] lg:w-[320px]'>
                                 <FeaturedBookCover 
                                     coverImage={coverUrl}
