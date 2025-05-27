@@ -8,21 +8,22 @@ import Trending from "@/components/home/Trending"
 
 import { db } from "@/database/drizzle"
 import { books, users } from "@/database/schema"
+import { getLatestTrending, getReadersChoice } from "@/lib/bookFilter"
 import { desc } from "drizzle-orm"
 
 const Home = async () => {
-    const session = await auth();
-
-    const latestBooks = (await db
+    const allBooks = (await db
         .select()
         .from(books)
-        .limit(6)
-        .orderBy(desc(books.createdAt)))
-        .map(book => ({
-            ...book,
-            rating: Number(book.rating)
-        })) as Book[];
+        .orderBy(desc(books.createdAt))
+    ).map(book => ({
+        ...book,
+        rating: Number(book.rating),
+    })) as Book[]
 
+    const trendingBooks = getLatestTrending(allBooks)
+    const readersChoiceBooks = getReadersChoice(allBooks)
+    
     const result = await db.select().from(users);
     console.log(JSON.stringify(result, null, 2));
 
@@ -31,16 +32,15 @@ const Home = async () => {
             <div className='relative'>
                 <Header />
                 <Featured
-                    {...latestBooks[0]}
-                    // userId={session?.user?.id as string}
+                    {...allBooks[0]}
                 />
                 <Trending
                     title="Latest Trending"
-                    books={latestBooks.slice(1)}
+                    books={trendingBooks}
                 />
                 <ReaderChoice 
-                    title="Most Reader&apos;s Choice"
-                    books={latestBooks.slice(1)}
+                    title="Most Reader's Choice"
+                    books={readersChoiceBooks}
                 />
                 <About />
                 <Review />

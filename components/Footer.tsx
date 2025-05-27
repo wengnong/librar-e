@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Footer = () => {
     return (
-        <div className='bg-[#EAB139] mt-40 flex flex-col md:flex-row w-full'>
+        <div className='bg-[#EAB139] flex flex-col md:flex-row w-full'>
             {/* Left side */}
             <div className='bg-[#030C19] py-14 px-8 w-full md:w-1/3 flex justify-start items-center'>
                 <Image

@@ -35,3 +35,8 @@ interface BookParams {
     fileUrl: string;
     description: string;
 }
+
+interface BorrowBookParams {
+    bookId: string;
+    userId: string;
+}
