@@ -50,6 +50,13 @@
       "when": 1748264276712,
       "tag": "0006_brainy_fabian_cortez",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1748343746880,
+      "tag": "0007_lush_lake",
+      "breakpoints": true
     }
   ]
 }
