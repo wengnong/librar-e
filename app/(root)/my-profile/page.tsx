@@ -7,6 +7,7 @@ import { auth } from '@/auth';
 import dayjs from 'dayjs';
 import { getUserBorrowedBooks } from '@/lib/actions/user';
 import BookCover from '@/components/home/BookCover';
+import { AvatarImage } from '@radix-ui/react-avatar';
 
 const page = async () => {
     const session = await auth();
@@ -33,10 +34,11 @@ const page = async () => {
                 {/* Profile card */}
                 <div className='bg-[#EAB139] rounded-2xl p-4 sm:p-5 md:p-8 content-center w-full max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm'>
                     <Link href='/my-profile'>
-                        <Avatar className='size-20'>
-                            <AvatarFallback className='bg-gray-500 text-white text-3xl flex items-center justify-center rounded-full leading-none'>
+                        <Avatar className='size-20 mx-auto'>
+                            <AvatarImage src="images/profile/44.webp" alt=''></AvatarImage>
+                            {/* <AvatarFallback className='bg-gray-500 text-white text-3xl flex items-center justify-center rounded-full leading-none'>
                                 {getInitials(session?.user?.name || 'IN')}
-                            </AvatarFallback>
+                            </AvatarFallback> */}
                         </Avatar>
                     </Link>
 
@@ -46,7 +48,7 @@ const page = async () => {
                         <p className='text-black text-lg font-medium'>Books Borrowed: {borrowedBooks.length}</p>
                     </div>
 
-                    <div>
+                    <div className='flex justify-center'>
                         <form action={async () => {
                             "use server";
                             await signOut();
