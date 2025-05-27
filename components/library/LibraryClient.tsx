@@ -1,8 +1,8 @@
 "use client"
 
-import BookCard from "@/components/home/BookCard"
 import React, { useState, useMemo } from "react"
 import { Search, Filter, ChevronDown } from "lucide-react"
+import BookCard from "../home/BookCard"
 
 interface LibraryClientProps {
     initialBooks: Book[]
