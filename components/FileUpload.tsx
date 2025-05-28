@@ -1,9 +1,8 @@
 "use client";
 
-import { IKImage, ImageKitProvider, IKUpload, IKVideo } from "imagekitio-next";
+import { IKImage, ImageKitProvider, IKUpload } from "imagekitio-next";
 import config from "@/lib/config";
 import { useRef, useState } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -79,10 +78,10 @@ const FileUpload = ({
     const styles = {
         button:
             variant === "dark"
-                ? "bg-dark-300"
-                : "bg-light-600 border-gray-100 border",
-        placeholder: variant === "dark" ? "text-light-100" : "text-slate-500",
-        text: variant === "dark" ? "text-light-100" : "text-dark-400",
+                ? "bg-[#000000]"
+                : "border-[#393E46] border-2 rounded-md",
+        placeholder: variant === "dark" ? "text-gray-100" : "text-[#FE7743]",
+        text: variant === "dark" ? "text-gray-100" : "text-[#FE7743]",
     };
 
     const onError = (error: unknown) => {
@@ -147,7 +146,7 @@ const FileUpload = ({
             />
 
             <button
-                className={cn("upload-btn", styles.button)}
+                className={cn("bg-[#FFFFFF]/85 cursor-pointer hover:border-[#FE7743] transition-all duration-300", styles.button)}
                 onClick={(e) => {
                     e.preventDefault();
 
@@ -156,14 +155,6 @@ const FileUpload = ({
                     }
                 }}
             >
-                <Image
-                    src="/icons/upload.svg"
-                    alt="upload-icon"
-                    width={20}
-                    height={20}
-                    className="object-contain"
-                />
-
                 <p className={cn("text-base", styles.placeholder)}>{placeholder}</p>
 
                 {file.filePath && (
@@ -187,15 +178,9 @@ const FileUpload = ({
                         width={500}
                         height={300}
                     />
-                ) : type === "video" ? (
-                    <IKVideo
-                        path={file.filePath}
-                        controls={true}
-                        className="h-96 w-full rounded-xl"
-                    />
                 ) : null)}
         </ImageKitProvider>
     );
 };
 
-export default FileUpload;
+export default FileUpload

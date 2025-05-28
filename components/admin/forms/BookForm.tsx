@@ -60,13 +60,13 @@ const BookForm = ({ }: Props) => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap gap-4">
                 <FormField
                     control={form.control}
                     name={"title"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Book Title
                         </FormLabel>
                         <FormControl>
@@ -74,7 +74,7 @@ const BookForm = ({ }: Props) => {
                                 required
                                 placeholder="Book title"
                                 {...field}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                             />
                         </FormControl>
                         <FormMessage />
@@ -85,8 +85,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"author"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Author
                         </FormLabel>
                         <FormControl>
@@ -94,7 +94,7 @@ const BookForm = ({ }: Props) => {
                                 required
                                 placeholder="Book author"
                                 {...field}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                             />
                         </FormControl>
                         <FormMessage />
@@ -106,8 +106,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"year"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Published Year
                         </FormLabel>
                         <FormControl>
@@ -117,7 +117,7 @@ const BookForm = ({ }: Props) => {
                                 max={9999}
                                 placeholder="Book year"
                                 {...field}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                             />
                         </FormControl>
                         <FormMessage />
@@ -129,8 +129,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"genre"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Genre
                         </FormLabel>
                         <FormControl>
@@ -138,7 +138,7 @@ const BookForm = ({ }: Props) => {
                                 required
                                 placeholder="Book genre"
                                 {...field}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                             />
                         </FormControl>
                         <FormMessage />
@@ -150,8 +150,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"rating"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Rating
                         </FormLabel>
                         <FormControl>
@@ -162,7 +162,7 @@ const BookForm = ({ }: Props) => {
                                 max={5}
                                 placeholder="Book rating"
                                 {...field}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                             />
                         </FormControl>
                         <FormMessage />
@@ -174,8 +174,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"description"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Book Description
                         </FormLabel>
                         <FormControl>
@@ -183,7 +183,7 @@ const BookForm = ({ }: Props) => {
                                 placeholder="Book description"
                                 {...field}
                                 rows={10}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                             />
                         </FormControl>
 
@@ -196,8 +196,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"fileUrl"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             PDF File Url
                         </FormLabel>
                         <FormControl>
@@ -205,7 +205,7 @@ const BookForm = ({ }: Props) => {
                                 placeholder="Book pdf"
                                 {...field}
                                 rows={10}
-                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#FFFFFF]/85 border-[#393E46] border-2 w-full min-h-14 font-bold placeholder:text-[#FE7743] text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none focus-visible:border-[#FE7743]"
                                 />
                         </FormControl>
 
@@ -218,8 +218,8 @@ const BookForm = ({ }: Props) => {
                     control={form.control}
                     name={"coverUrl"}
                     render={({ field }) => (
-                        <FormItem className="flex flex-col gap-1">
-                        <FormLabel className="text-base font-normal text-dark-500">
+                        <FormItem className="flex flex-col gap-1 w-full">
+                        <FormLabel className="text-base">
                             Book Image
                         </FormLabel>
                         <FormControl>
@@ -231,8 +231,6 @@ const BookForm = ({ }: Props) => {
                                 variant="light"
                                 onFileChange={field.onChange}
                                 value={field.value}
-                                
-                                
                             />
                         </FormControl>
                         <FormMessage />
