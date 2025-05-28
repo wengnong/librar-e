@@ -13,7 +13,7 @@ const Sidebar = ({ session } : { session: Session }) => {
     const pathname = usePathname();
 
     return (
-        <div className='w-full md:w-64 bg-[#041224] text-white h-full md:min-h-screen'>
+        <div className='w-full md:w-55 bg-[#041224] text-white h-full md:min-h-screen'>
             <Link href='/'>
                 <Image
                     className='flex pt-4 pl-4'
@@ -29,8 +29,8 @@ const Sidebar = ({ session } : { session: Session }) => {
             {/* Admin Profile */}
             <div className='flex flex-col items-start px-6'>
                 <Link href='/my-profile'>
-                    <Avatar>
-                        <AvatarFallback className='bg-gray-500 text-white'>
+                    <Avatar className='size-20'>
+                        <AvatarFallback className='bg-gray-500 text-white text-3xl'>
                             {getInitials(session?.user?.name || 'IN')}
                         </AvatarFallback>
                     </Avatar>

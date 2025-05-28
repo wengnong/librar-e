@@ -74,7 +74,7 @@ const BookForm = ({ }: Props) => {
                                 required
                                 placeholder="Book title"
                                 {...field}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                             />
                         </FormControl>
                         <FormMessage />
@@ -94,7 +94,7 @@ const BookForm = ({ }: Props) => {
                                 required
                                 placeholder="Book author"
                                 {...field}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                             />
                         </FormControl>
                         <FormMessage />
@@ -117,7 +117,7 @@ const BookForm = ({ }: Props) => {
                                 max={9999}
                                 placeholder="Book year"
                                 {...field}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                             />
                         </FormControl>
                         <FormMessage />
@@ -138,7 +138,7 @@ const BookForm = ({ }: Props) => {
                                 required
                                 placeholder="Book genre"
                                 {...field}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                             />
                         </FormControl>
                         <FormMessage />
@@ -162,7 +162,7 @@ const BookForm = ({ }: Props) => {
                                 max={5}
                                 placeholder="Book rating"
                                 {...field}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                             />
                         </FormControl>
                         <FormMessage />
@@ -183,7 +183,7 @@ const BookForm = ({ }: Props) => {
                                 placeholder="Book description"
                                 {...field}
                                 rows={10}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                             />
                         </FormControl>
 
@@ -205,7 +205,7 @@ const BookForm = ({ }: Props) => {
                                 placeholder="Book pdf"
                                 {...field}
                                 rows={10}
-                                className="bg-[#e8cfec] w-full min-h-14 border-none font-bold text-[#010306] placeholder:text-[#ab7ea7] focus-visible:ring-0 focus-visible:shadow-none"
+                                className="bg-[#393E46] w-full min-h-14 border-none font-bold text-[#F8F8E1] placeholder:text-[#FE7743] focus-visible:ring-0 focus-visible:shadow-none"
                                 />
                         </FormControl>
 
@@ -231,6 +231,8 @@ const BookForm = ({ }: Props) => {
                                 variant="light"
                                 onFileChange={field.onChange}
                                 value={field.value}
+                                
+                                
                             />
                         </FormControl>
                         <FormMessage />
