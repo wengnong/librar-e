@@ -1,19 +1,26 @@
 import { signOut } from '@/auth';
 import React from 'react'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { cn, getInitials } from '@/lib/utils'
 import Link from 'next/link'
 import { auth } from '@/auth';
 import dayjs from 'dayjs';
 import { getUserBorrowedBooks } from '@/lib/actions/user';
 import BookCover from '@/components/home/BookCover';
-import { AvatarImage } from '@radix-ui/react-avatar';
+import ProfileImageSelector from '@/components/ProfileImageSelector'; // Adjust path as needed
 
 const page = async () => {
     const session = await auth();
     const userId = session?.user?.id;
     const borrowedBooksResult = userId ? await getUserBorrowedBooks(userId) : null;
     const borrowedBooks = borrowedBooksResult?.success ? borrowedBooksResult.data : [];
+
+    // Server action to update profile image
+    const updateProfileImage = async (imageSrc: string) => {
+        'use server';
+        // Implement your database update logic here
+        console.log(`Updating profile image to: ${imageSrc}`);
+        // Example: await updateUserProfileImage(userId, imageSrc);
+    };
 
     return (
         <div className='w-full min-h-screen'>
@@ -33,14 +40,13 @@ const page = async () => {
             <div className='flex flex-col md:flex-row justify-center gap-5 mb-6 p-10'>
                 {/* Profile card */}
                 <div className='bg-[#EAB139] rounded-2xl p-4 sm:p-5 md:p-8 content-center w-full max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 shadow-sm'>
-                    <Link href='/my-profile'>
-                        <Avatar className='size-20 mx-auto'>
-                            <AvatarImage src="images/profile/44.webp" alt=''></AvatarImage>
-                            {/* <AvatarFallback className='bg-gray-500 text-white text-3xl flex items-center justify-center rounded-full leading-none'>
-                                {getInitials(session?.user?.name || 'IN')}
-                            </AvatarFallback> */}
-                        </Avatar>
-                    </Link>
+                    
+                    {/* Profile Image Selector (Client Component) */}
+                    <ProfileImageSelector 
+                        currentImage="images/profile/44.webp" // You can get this from user data
+                        userName={session?.user?.name || 'Guest'}
+                        onImageSelect={updateProfileImage}
+                    />
 
                     <div className='flex flex-col text-left'> 
                         <p className='text-black text-lg font-medium'>Name: {session?.user?.name || 'Guest'}</p>
@@ -131,7 +137,7 @@ const page = async () => {
                             </svg>
                         </div>
                         <h3 className="text-lg font-medium text-gray-600 mb-2">No borrowed books</h3>
-                        <p className="text-gray-500 mb-4">You haven’t borrowed any books yet.</p>
+                        <p className="text-gray-500 mb-4">You haven't borrowed any books yet.</p>
                         <Link
                             href="/library"
                             className="inline-block bg-[#EAB139] text-[#0A2647] px-6 py-2 rounded-md font-medium hover:bg-[#d4a332] transition-colors"
