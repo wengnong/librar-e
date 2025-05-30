@@ -7,6 +7,7 @@ import { getUserBorrowedBooks } from '@/lib/actions/user';
 import BookCover from '@/components/home/BookCover';
 import ProfileImageSelector from '@/components/ProfileImageSelector';
 import { Button } from '@/components/ui/button';
+import ReturnBook from '@/components/books/ReturnBook';
 
 const page = async () => {
     const session = await auth();
@@ -46,7 +47,6 @@ const page = async () => {
                         userName={session?.user?.name || 'Guest'}
                         onImageSelect={updateProfileImage}
                     />
-
 
                     <div className='flex flex-col text-left'> 
                         <p className='text-black text-lg font-medium'>Name: {session?.user?.name || 'Guest'}</p>
@@ -99,9 +99,19 @@ const page = async () => {
                                             {dayjs(book.dueDate).format("DD MMM YYYY")}
                                         </p>
 
-                                        <Link href={book.fileUrl} target="_blank">
-                                            <Button className='bg-[#EAB139] w-full hover:bg-[#ea7a39] cursor-pointer transition-all duration-200'>READ</Button>
-                                        </Link>
+                                        {dayjs().isAfter(dayjs(book.dueDate).subtract(1, 'day')) ? (
+                                            <Button 
+                                                disabled 
+                                                className='bg-gray-400 w-full cursor-not-allowed opacity-50 transition-all duration-200'
+                                                title="Cannot read overdue book. Please return first."
+                                            >
+                                                LOCKED
+                                            </Button>
+                                        ) : (
+                                            <Link href={book.fileUrl} target="_blank">
+                                                <Button className='bg-[#EAB139] w-full hover:bg-[#ea7a39] cursor-pointer transition-all duration-200'>READ</Button>
+                                            </Link>
+                                        )}
 
                                         <div className="flex justify-between items-center pt-2">
                                             <span
@@ -114,9 +124,10 @@ const page = async () => {
                                                 {dayjs().isAfter(dayjs(book.dueDate)) ? "OVERDUE" : "ACTIVE"}
                                             </span>
 
-                                            <button className="text-[10px] bg-[#0A2647] text-white px-2 py-2 rounded-md hover:bg-[#040a11] transition-all duration-150 cursor-pointer">
-                                                RETURN
-                                            </button>
+                                            <ReturnBook 
+                                                borrowRecordId={book.id} 
+                                                bookTitle={book.title}
+                                            />
                                         </div>
                                     </div>
                                 </div>
