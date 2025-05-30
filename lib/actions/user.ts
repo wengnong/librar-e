@@ -2,7 +2,7 @@
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords } from "@/database/schema";
-import { eq, and } from "drizzle-orm";
+import { eq, and, desc } from "drizzle-orm";
 
 export const getUserBorrowedBooks = async (userId: string) => {
     try {
@@ -16,7 +16,7 @@ export const getUserBorrowedBooks = async (userId: string) => {
                 coverUrl: books.coverUrl,
                 dueDate: borrowRecords.dueDate,
                 status: borrowRecords.status,
-                borrowedAt: borrowRecords.createdAt,
+                borrowedAt: borrowRecords.borrowDate,
             })
             .from(borrowRecords)
             .innerJoin(books, eq(borrowRecords.bookId, books.id))
@@ -26,7 +26,7 @@ export const getUserBorrowedBooks = async (userId: string) => {
                     eq(borrowRecords.status, "BORROWED")
                 )
             )
-            .orderBy(borrowRecords.createdAt);
+            .orderBy(desc(borrowRecords.borrowDate)); 
 
         return {
             success: true,
@@ -53,13 +53,13 @@ export const getUserBorrowHistory = async (userId: string) => {
                 coverUrl: books.coverUrl,
                 dueDate: borrowRecords.dueDate,
                 status: borrowRecords.status,
-                borrowedAt: borrowRecords.createdAt,
+                borrowedAt: borrowRecords.borrowDate,
                 returnedAt: borrowRecords.returnDate,
             })
             .from(borrowRecords)
             .innerJoin(books, eq(borrowRecords.bookId, books.id))
             .where(eq(borrowRecords.userId, userId))
-            .orderBy(borrowRecords.createdAt);
+            .orderBy(desc(borrowRecords.borrowDate));
 
         return {
             success: true,

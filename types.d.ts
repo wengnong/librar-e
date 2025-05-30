@@ -40,3 +40,34 @@ interface BorrowBookParams {
     bookId: string;
     userId: string;
 }
+
+interface BorrowedBook {
+    id: string;
+    bookId: string; 
+    title: string;
+    author: string;
+    genre: string;
+    coverUrl: string;
+    fileUrl: string;
+    dueDate: string;
+    status: "BORROWED" | "RETURNED";
+    borrowedAt: Date;
+}
+
+interface BorrowHistory {
+    id: string;
+    bookId: string;
+    title: string;
+    author: string;
+    genre: string;
+    coverUrl: string;
+    fileUrl: string;
+    dueDate: string;
+    status: "BORROWED" | "RETURNED";
+    borrowedAt: Date;
+    returnedAt: string | null;
+}
+
+interface ReturnBookParams {
+    borrowRecordId: string;
+}

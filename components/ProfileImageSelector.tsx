@@ -6,9 +6,7 @@ import { getInitials } from '@/lib/utils';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -64,38 +62,37 @@ const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit bg-[#EAB139] border-gray-200 shadow-lg p-4">
-  <DropdownMenuLabel className="text-gray-700 mb-2 passion-one-regular">Choose Profile Image</DropdownMenuLabel>
-  <div className="grid grid-cols-3 gap-4">
-    {profileImages.map((image) => (
-      <div 
-        key={image.id}
-        className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
-        onClick={() => handleImageSelect(image.src)}
-      >
-        <Avatar className="size-14">
-          <AvatarImage src={image.src} alt={image.name} />
-          <AvatarFallback className='bg-[#EAB139] text-white text-xs'>
-            {image.id}
-          </AvatarFallback>
-        </Avatar>
-        <span className="text-xs text-gray-800 mt-1">{image.name}</span>
-      </div>
-    ))}
-    {/* Reset Option */}
-    <div 
-      className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
-      onClick={() => handleImageSelect('')}
-    >
-      <Avatar className="size-14">
-        <AvatarFallback className="bg-gray-500 text-white text-xs">
-          {getInitials(userName || 'IN')}
-        </AvatarFallback>
-      </Avatar>
-      <span className="text-xs text-gray-800 mt-1">Use Initials</span>
-    </div>
-  </div>
-</DropdownMenuContent>
-
+          <DropdownMenuLabel className="text-xl text-gray-700 mb-2 passion-one-regular pointer-events-none">Choose Profile Image</DropdownMenuLabel>
+          <div className="grid grid-cols-3 gap-4">
+            {profileImages.map((image) => (
+              <div 
+                key={image.id}
+                className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
+                onClick={() => handleImageSelect(image.src)}
+              >
+                <Avatar className="size-14">
+                  <AvatarImage src={image.src} alt={image.name} />
+                  <AvatarFallback className='bg-[#EAB139] text-white text-xs'>
+                    {image.id}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="text-xs text-gray-800 mt-1">{image.name}</span>
+              </div>
+            ))}
+            {/* Reset Option */}
+            <div 
+              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => handleImageSelect('')}
+            >
+              <Avatar className="size-14">
+                <AvatarFallback className="bg-gray-500 text-white text-xs">
+                  {getInitials(userName || 'IN')}
+                </AvatarFallback>
+              </Avatar>
+              <span className="text-xs text-gray-800 mt-1">Use Initials</span>
+            </div>
+          </div>
+      </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
