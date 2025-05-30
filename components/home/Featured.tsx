@@ -15,7 +15,7 @@ const Featured = ({
 }: Book) => {
     return (
         <div className='relative flex flex-col justify-center items-center w-full px-4'>
-            <h1 className='z-20 paytone-one-regular text-3xl md:text-5xl text-center bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text '>LOVED RIGHT NOW</h1>
+            <h1 className='z-20 paytone-one-regular text-3xl md:text-5xl text-center bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text shadow-md'>LOVED RIGHT NOW</h1>
 
             <div className='relative mt-6 w-full flex justify-center'>
                 <div className='flex flex-col-reverse lg:flex-row justify-start md:items-center bg-[#030C19] px-6 md:px-12 py-8 rounded-[10px] mx-4 md:mx-40 max-w-6xl shadow-lg gap-8'>
