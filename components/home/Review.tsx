@@ -65,7 +65,7 @@ const Review = () => {
 
     return (
         <div className="relative w-full flex flex-col items-center my-20 px-4">
-            <h1 className="paytone-one-regular text-2xl md:text-3xl text-[#EAB139] text-center shadow-md mb-2 select-none">wordsontheshelf</h1>
+            <h1 className="z-20 paytone-one-regular text-2xl md:text-3xl text-center bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text lowercase mb-2 select-none">wordsontheshelf</h1>
             <p className="text-center max-w-xl mx-auto text-[#FFFFFF] text-base md:text-lg leading-relaxed select-none">Hear what fellow book lovers have to say about their experience. We&apos;ve helped countless readers rekindle their love for books — one story at a time.</p>
 
             <div className="relative w-full max-w-6xl flex justify-center items-center h-[600px] overflow-hidden px-2 select-none">
