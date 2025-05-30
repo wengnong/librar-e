@@ -27,11 +27,11 @@ const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
 
   // Available profile images
   const profileImages = [
-    { id: 1, src: "images/profile/Messi.webp", name: "Avatar 1" },
-    { id: 2, src: "images/profile/mefr.webp", name: "Avatar 2" },
-    { id: 3, src: "images/profile/magsvestpen.webp", name: "Avatar 3" },
-    { id: 4, src: "images/profile/44.webp", name: "Avatar 4" },
-    { id: 5, src: "images/profile/MessiAgain.webp", name: "Avatar 5" },
+    { id: 1, src: "images/profile/Messi.webp", name: "" },
+    { id: 2, src: "images/profile/mefr.webp", name: "" },
+    { id: 3, src: "images/profile/magsvestpen.webp", name: "" },
+    { id: 4, src: "images/profile/44.webp", name: "" },
+    { id: 5, src: "images/profile/MessiAgain.webp", name: "" },
   ];
 
   const handleImageSelect = async (imageSrc: string) => {
@@ -55,36 +55,37 @@ const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
             </Avatar>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 bg-[#EAB139] border-gray-200 shadow-lg">
-          <DropdownMenuLabel className="text-gray-700">Choose Profile Image</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          {profileImages.map((image) => (
-            <DropdownMenuItem 
-              key={image.id}
-              className="flex items-center gap-3 cursor-pointer hover:bg-gray-50"
-              onClick={() => handleImageSelect(image.src)}
+        <DropdownMenuContent className="w-fit bg-[#EAB139] border-gray-200 shadow-lg p-4">
+          <DropdownMenuLabel className="text-gray-700 mb-2 passion-one-regular">Choose Profile Image</DropdownMenuLabel>
+          <div className="grid grid-cols-3 gap-4">
+            {profileImages.map((image) => (
+              <div 
+                key={image.id}
+                className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
+                onClick={() => handleImageSelect(image.src)}
+              >
+                <Avatar className="size-14">
+                  <AvatarImage src={image.src} alt={image.name} />
+                  <AvatarFallback className='bg-[#EAB139] text-white text-xs'>
+                    {image.id}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="text-xs text-gray-800 mt-1">{image.name}</span>
+              </div>
+            ))}
+            {/* Reset Option */}
+            <div 
+              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => handleImageSelect('')}
             >
-              <Avatar className='size-8'>
-                <AvatarImage src={image.src} alt={image.name} />
-                <AvatarFallback className='bg-[#EAB139] text-white text-xs'>
-                  {image.id}
+              <Avatar className="size-14">
+                <AvatarFallback className="bg-gray-500 text-white text-xs">
+                  {getInitials(userName || 'IN')}
                 </AvatarFallback>
               </Avatar>
-              <span className="text-gray-700">{image.name}</span>
-            </DropdownMenuItem>
-          ))}
-          <DropdownMenuSeparator />
-          <DropdownMenuItem 
-            className="flex items-center gap-3 cursor-pointer hover:bg-gray-50"
-            onClick={() => handleImageSelect('')}
-          >
-            <Avatar className='size-8'>
-              <AvatarFallback className='bg-gray-500 text-white text-xs'>
-                {getInitials(userName || 'IN')}
-              </AvatarFallback>
-            </Avatar>
-            <span className="text-gray-700">Use Initials</span>
-          </DropdownMenuItem>
+              <span className="text-xs text-gray-800 mt-1">Use Initials</span>
+            </div>
+          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
