@@ -1,12 +1,12 @@
 import { signOut } from '@/auth';
 import React from 'react'
-import { cn, getInitials } from '@/lib/utils'
 import Link from 'next/link'
 import { auth } from '@/auth';
 import dayjs from 'dayjs';
 import { getUserBorrowedBooks } from '@/lib/actions/user';
 import BookCover from '@/components/home/BookCover';
-import ProfileImageSelector from '@/components/ProfileImageSelector'; // Adjust path as needed
+import ProfileImageSelector from '@/components/ProfileImageSelector';
+import { Button } from '@/components/ui/button';
 
 const page = async () => {
     const session = await auth();
@@ -17,9 +17,9 @@ const page = async () => {
     // Server action to update profile image
     const updateProfileImage = async (imageSrc: string) => {
         'use server';
-        // Implement your database update logic here
+        // Implement database update logic
         console.log(`Updating profile image to: ${imageSrc}`);
-        // Example: await updateUserProfileImage(userId, imageSrc);
+        // await updateUserProfileImage(userId, imageSrc);
     };
 
     return (
@@ -59,7 +59,7 @@ const page = async () => {
                             "use server";
                             await signOut();
                         }}>
-                            <button className='border-2 border-[#0A2647] rounded-[10px] px-4 py-1 bg-[#0A2647] text-[#EAB139] hover:bg-[#040a11] hover:border-[#EAB139] duration-200 flex items-center justify-center'>
+                            <button className='border-2 border-[#0A2647] rounded-[10px] px-4 py-1 bg-[#0A2647] text-[#EAB139] hover:bg-[#040a11] hover:border-[#EAB139] duration-200 flex items-center justify-center cursor-pointer'>
                                 Logout
                             </button>
                         </form>
@@ -69,7 +69,7 @@ const page = async () => {
 
             {/* Borrowed books grid */}
             <div className="px-4 md:px-10 mb-10">
-                <h2 className="text-2xl font-bold text-white mb-6">My Borrowed Books</h2>
+                <h2 className="z-20 paytone-one-regular text-2xl md:text-3xl text-left bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text uppercase mb-8">My Borrowed Books</h2>
 
                 {borrowedBooks.length > 0 ? (
                     <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
@@ -98,6 +98,10 @@ const page = async () => {
                                             <span className="font-medium">Due Date:</span>{" "}
                                             {dayjs(book.dueDate).format("DD MMM YYYY")}
                                         </p>
+
+                                        <Link href={book.fileUrl} target="_blank">
+                                            <Button className='bg-[#EAB139] w-full hover:bg-[#ea7a39] cursor-pointer transition-all duration-200'>READ</Button>
+                                        </Link>
 
                                         <div className="flex justify-between items-center pt-2">
                                             <span
@@ -137,7 +141,7 @@ const page = async () => {
                             </svg>
                         </div>
                         <h3 className="text-lg font-medium text-gray-600 mb-2">No borrowed books</h3>
-                        <p className="text-gray-500 mb-4">You haven't borrowed any books yet.</p>
+                        <p className="text-gray-500 mb-4">You have not borrowed any books yet.</p>
                         <Link
                             href="/library"
                             className="inline-block bg-[#EAB139] text-[#0A2647] px-6 py-2 rounded-md font-medium hover:bg-[#d4a332] transition-colors"
