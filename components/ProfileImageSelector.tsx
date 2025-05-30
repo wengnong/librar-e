@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/lib/utils';
 import {
@@ -13,19 +13,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface ProfileImageSelectorProps {
-  currentImage: string;
   userName: string;
-  onImageSelect: (imageSrc: string) => Promise<void>;
+  onImageSelect?: (imageSrc: string) => Promise<void>;
 }
 
 const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
-  currentImage,
   userName,
   onImageSelect
 }) => {
-  const [selectedImage, setSelectedImage] = useState(currentImage);
+  const localStorageKey = `profile-image-${userName}`;
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Available profile images
   const profileImages = [
     { id: 1, src: "images/profile/Messi.webp", name: "Avatar 1" },
     { id: 2, src: "images/profile/mefr.webp", name: "Avatar 2" },
@@ -34,9 +32,19 @@ const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
     { id: 5, src: "images/profile/MessiAgain.webp", name: "Avatar 5" },
   ];
 
+  useEffect(() => {
+    const savedImage = localStorage.getItem(localStorageKey);
+    if (savedImage !== null) {
+      setSelectedImage(savedImage);
+    }
+  }, [localStorageKey]);
+
   const handleImageSelect = async (imageSrc: string) => {
     setSelectedImage(imageSrc);
-    await onImageSelect(imageSrc);
+    localStorage.setItem(localStorageKey, imageSrc);
+    if (onImageSelect) {
+      await onImageSelect(imageSrc);
+    }
   };
 
   return (
