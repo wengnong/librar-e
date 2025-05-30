@@ -43,10 +43,10 @@ const page = async () => {
                     
                     {/* Profile Image Selector (Client Component) */}
                     <ProfileImageSelector 
-                        currentImage="images/profile/44.webp" // You can get this from user data
                         userName={session?.user?.name || 'Guest'}
                         onImageSelect={updateProfileImage}
                     />
+
 
                     <div className='flex flex-col text-left'> 
                         <p className='text-black text-lg font-medium'>Name: {session?.user?.name || 'Guest'}</p>
