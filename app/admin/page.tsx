@@ -12,7 +12,7 @@ const page = () => {
                 </div>
             </div>
 
-            <div className='bg-white relative min-h-[400px] rounded-2xl p-4'>
+            <div className='bg-[#041224] relative min-h-[400px] rounded-2xl p-4'>
                 {/* <div className='flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-4'>
                     <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'>
                         A - Z
@@ -20,7 +20,7 @@ const page = () => {
                 </div> */}
 
                 {/* Table header */}
-                <div className='w-full overflow-hidden bg-[#8196AE] grid grid-cols-2 sm:grid-cols-5 items-center h-14 px-6 mt-4 rounded-t-lg text-center'>
+                <div className='w-full overflow-hidden bg-[#EAB139] grid grid-cols-2 sm:grid-cols-5 items-center h-14 px-6 mt-4 rounded-t-lg text-center'>
                     <h2 className='text-black text-sm sm:text-base'>Username</h2>
                     <h2 className='text-black text-sm sm:text-base'>Book(s) borrowed</h2>
                     <h2 className='text-black text-sm sm:text-base'>Latest Borrow Date</h2>
