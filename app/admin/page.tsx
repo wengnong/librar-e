@@ -23,8 +23,8 @@ const page = () => {
                 <div className='w-full overflow-hidden bg-[#8196AE] grid grid-cols-2 sm:grid-cols-5 items-center h-14 px-6 mt-4 rounded-t-lg text-center'>
                     <h2 className='text-black text-sm sm:text-base'>Username</h2>
                     <h2 className='text-black text-sm sm:text-base'>Book(s) borrowed</h2>
-                    <h2 className='text-black text-sm sm:text-base'>Borrow Date</h2>
-                    <h2 className='text-black text-sm sm:text-base'>Return Date</h2>
+                    <h2 className='text-black text-sm sm:text-base'>Latest Borrow Date</h2>
+                    <h2 className='text-black text-sm sm:text-base'>Latest Return Date</h2>
                     <h2 className='text-black text-sm sm:text-base'>Created At</h2>
                 </div>
             </div>
