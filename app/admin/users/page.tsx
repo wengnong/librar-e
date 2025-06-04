@@ -7,7 +7,7 @@ const Page = () => {
         <div className='w-full h-min-screen'>
             <div className='flex flex-col md:flex-row justify-between gap-5 mb-6'>
                 <div className='bg-white rounded-2xl p-5 w-full shadow-sm'>
-                    <p className='text-black text-lg font-medium'>Books Dashboard</p>
+                    <p className='text-black text-lg font-medium'>User Dashboard</p>
                 </div>
             </div>
 
