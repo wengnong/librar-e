@@ -78,3 +78,14 @@ export const returnBook = async (borrowRecordId: string) => {
         }
     }
 }
+
+export const getAllBooks = async () => {
+  try {
+    const result = await db.select().from(books)
+    return result
+  } catch (error) {
+    console.error('Error fetching books:', error)
+    return []
+  }
+}
+

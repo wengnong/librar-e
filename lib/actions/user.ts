@@ -2,6 +2,7 @@
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords } from "@/database/schema";
+import { users } from "@/database/schema";
 import { eq, and, desc } from "drizzle-orm";
 
 export const getUserBorrowedBooks = async (userId: string) => {
@@ -75,3 +76,73 @@ export const getUserBorrowHistory = async (userId: string) => {
         };
     }
 };
+
+export const getAllUsers = async () => {
+    try {
+        const allUsers = await db
+            .select({
+                id: users.id,
+                name: users.username,
+                email: users.email,
+                role: users.role,
+                createdAt: users.createdAt,
+                lastActivityDate: users.lastActivityDate,
+            })
+            .from(users)
+            .orderBy(desc(users.createdAt));
+
+        return {
+            success: true,
+            data: allUsers
+        };
+    } catch (error) {
+        console.log("Error fetching users:", error);
+        return {
+            success: false,
+            error: "Failed to fetch users"
+        };
+    }
+};
+
+// Add this function to your existing user.ts file
+
+export const updateUserRole = async (userId: string, newRole: "USER" | "ADMIN",) => {
+    try {
+        const updatedUser = await db
+            .update(users)
+            .set({
+                role: newRole as "USER" | "ADMIN",
+                // Optionally update last activity date
+                lastActivityDate: new Date().toISOString()
+            })
+            .where(eq(users.id, userId))
+            .returning({
+                id: users.id,
+                name: users.username,
+                email: users.email,
+                role: users.role,
+                createdAt: users.createdAt,
+                lastActivityDate: users.lastActivityDate,
+            });
+
+        if (updatedUser.length === 0) {
+            return {
+                success: false,
+                error: "User not found"
+            };
+        }
+
+        return {
+            success: true,
+            data: updatedUser[0],
+            message: "Role updated successfully"
+        };
+    } catch (error) {
+        console.log("Error updating user role:", error);
+        return {
+            success: false,
+            error: "Failed to update user role"
+        };
+    }
+};
+
