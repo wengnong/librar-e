@@ -38,7 +38,12 @@ const Page = () => {
       <div className="bg-white relative min-h-[400px] rounded-2xl p-4">
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-4'>
             <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'>
-                Add New Books +
+              A - Z
+            </button>
+            <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'>
+                <Link href="/admin/books/new">
+                  Add New Books +
+                </Link>
             </button>
         </div>
         {/* Table header */}
@@ -47,7 +52,7 @@ const Page = () => {
           <h2 className="text-black text-sm sm:text-base">Author</h2>
           <h2 className="text-black text-sm sm:text-base">Genre</h2>
           <h2 className="text-black text-sm sm:text-base">Created At</h2>
-          {/* <h2 className="text-black text-sm sm:text-base">Action</h2> */}
+          <h2 className="text-black text-sm sm:text-base">Action</h2>
         </div>
 
         {/* Book rows */}
@@ -74,11 +79,11 @@ const Page = () => {
                   })
                 : '—'}
             </p>
-            {/* <div>
-              <Link href={`/admin/books/${book.id}`} className="text-black hover:underline">
+            <div>
+              <Link href={`/books/${book.id}`} className="text-black hover:underline">
                 View
               </Link>
-            </div> */}
+            </div>
           </div>
         ))}
       </div>
