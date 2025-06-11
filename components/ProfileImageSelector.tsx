@@ -23,10 +23,10 @@ const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const profileImages = [
-    { id: 1, src: "images/profile/Messi.webp", name: "" },
+    { id: 1, src: "images/profile/notSmoothOp.webp", name: "" },
     { id: 2, src: "images/profile/mefr.webp", name: "" },
     { id: 3, src: "images/profile/magsvestpen.webp", name: "" },
-    { id: 4, src: "images/profile/44.webp", name: "" },
+    { id: 4, src: "images/profile/WiyumsCarlost.webp", name: "" },
     { id: 5, src: "images/profile/MessiAgain.webp", name: "" },
   ];
 
