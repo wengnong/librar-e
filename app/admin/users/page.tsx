@@ -53,7 +53,7 @@ const Page = () => {
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-4'>
           <button
             onClick={handleSortAZ}
-            className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'
+            className='cursor-pointer h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'
           >
             {sortedAZ ? 'A - Z' : 'A - Z'}
           </button>
