@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from 'react';
-import dayjs from 'dayjs';
-import { getAllBorrowedBooks } from '@/lib/actions/user';
+import React, { useState, useEffect } from 'react'
+import dayjs from 'dayjs'
+import { getAllBorrowedBooks } from '@/lib/actions/user'
 
 type BorrowedBook = {
     id: string;
@@ -134,7 +134,7 @@ const Page = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Page;
+export default Page
