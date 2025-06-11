@@ -32,7 +32,7 @@ const RoleDropdown = ({ userId, currentRole }: Props) => {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`px-2 py-1 rounded-full text-xs font-medium transition-all ${
+        className={`cursor-pointer px-2 py-1 rounded-full text-xs font-medium transition-all ${
           role === 'USER'
             ? 'bg-red-100 text-red-800'
             : role === 'ADMIN'
@@ -63,5 +63,4 @@ const RoleDropdown = ({ userId, currentRole }: Props) => {
   );
 };
 
-// ✅ Move this line OUTSIDE the component
 export default RoleDropdown;
