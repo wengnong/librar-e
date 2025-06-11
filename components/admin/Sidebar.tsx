@@ -63,7 +63,7 @@ const Sidebar = ({ session }: { session: Session }) => {
       <hr className='my-5 h-1 border-t-0 bg-[#EAB139]' />
 
       {/* Sidebar Content */}
-      <div className='mt-6 flex flex-col gap-3 px-4'>
+      <div className='my-6 flex flex-col gap-3 px-4'>
         {adminSideBarLinks.map((link) => {
           const isSelected =
             (link.route !== '/admin' &&

@@ -28,6 +28,11 @@ export const adminSideBarLinks = [
         route: "/admin/books",
         text: "Books",
     },
+    {
+        img: "/icons/admin/bookmark.svg",
+        route: "/admin/borrowed-books",
+        text: "Borrowed",
+    }
 ];
 
 export const FIELD_NAMES = {

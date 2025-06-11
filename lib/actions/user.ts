@@ -104,15 +104,12 @@ export const getAllUsers = async () => {
     }
 };
 
-// Add this function to your existing user.ts file
-
 export const updateUserRole = async (userId: string, newRole: "USER" | "ADMIN",) => {
     try {
         const updatedUser = await db
             .update(users)
             .set({
                 role: newRole as "USER" | "ADMIN",
-                // Optionally update last activity date
                 lastActivityDate: new Date().toISOString()
             })
             .where(eq(users.id, userId))
@@ -146,3 +143,33 @@ export const updateUserRole = async (userId: string, newRole: "USER" | "ADMIN",)
     }
 };
 
+export const getAllBorrowedBooks = async () => {
+    try {
+        const allBorrowedBooks = await db
+            .select({
+                id: borrowRecords.id,
+                userId: borrowRecords.userId,
+                userName: users.username,
+                bookId: borrowRecords.bookId,
+                bookTitle: books.title,
+                borrowDate: borrowRecords.borrowDate,
+                dueDate: borrowRecords.dueDate,
+                status: borrowRecords.status,
+            })
+            .from(borrowRecords)
+            .innerJoin(books, eq(borrowRecords.bookId, books.id))
+            .innerJoin(users, eq(borrowRecords.userId, users.id))
+            .orderBy(desc(borrowRecords.borrowDate));
+
+        return {
+            success: true,
+            data: allBorrowedBooks
+        };
+    } catch (error) {
+        console.log("Error fetching all borrowed books:", error);
+        return {
+            success: false,
+            error: "Failed to fetch borrowed books"
+        };
+    }
+};
