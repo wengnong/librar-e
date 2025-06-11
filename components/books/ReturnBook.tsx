@@ -43,7 +43,7 @@ const ReturnBook = ({ borrowRecordId, bookTitle }: Props) => {
 
     return (
         <button 
-            className="text-[10px] bg-[#0A2647] text-white px-2 py-2 rounded-md hover:bg-[#040a11] transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="text-[10px] bg-[#0A2647] text-white px-2 py-2 rounded-md hover:bg-[#ad1212] transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleReturn}
             disabled={returning}
         >

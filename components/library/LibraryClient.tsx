@@ -65,8 +65,8 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
         <div className="min-h-screen w-full">
             <div className="relative px-4 py-20 text-center">
                 <div className="relative z-10">
-                    <h1 className="paytone-one-regular uppercase text-5xl md:text-7xl text-[#EAB139] mb-6 tracking-wide">
-                        LIBRARY
+                    <h1 className="paytone-one-regular text-3xl md:text-5xl bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text uppercase mb-6">
+                        FIND YOUR BOOKS HERE!
                     </h1>
                     <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
                         Explore our complete collection of {initialBooks.length} books
@@ -84,7 +84,7 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
                                 <select
                                     value={searchBy}
                                     onChange={(e) => setSearchBy(e.target.value as 'title' | 'author')}
-                                    className="px-4 py-3 bg-gray-50 border-r border-gray-200 text-gray-700 focus:outline-none text-sm font-medium"
+                                    className="px-4 py-3 bg-gray-50 border-r border-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#EAB139] text-sm font-medium cursor-pointer"
                                 >
                                     <option value="title">Title</option>
                                     <option value="author">Author</option>
@@ -105,7 +105,7 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
                         {/* Filter toggle */}
                         <button
                             onClick={() => setShowFilters(!showFilters)}
-                            className="flex items-center gap-2 px-6 py-3 bg-[#EAB139] text-white rounded-lg hover:bg-[#d49d2a] transition-colors font-medium"
+                            className="flex items-center gap-2 px-6 py-3 bg-[#EAB139] text-white rounded-lg hover:bg-[#f18912] transition-colors font-medium cursor-pointer"
                         >
                             <Filter className="w-4 h-4" />
                             Filters
@@ -123,7 +123,7 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
                                     <select
                                         value={selectedGenre}
                                         onChange={(e) => setSelectedGenre(e.target.value)}
-                                        className="w-full px-4 py-2 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#EAB139]"
+                                        className="w-full px-4 py-2 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#EAB139] cursor-pointer"
                                     >
                                         <option value="all">All Genres</option>
                                         {availableGenres.map(genre => (
@@ -138,7 +138,7 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
                                     <select
                                         value={sortBy}
                                         onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                                        className="w-full px-4 py-2 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#EAB139]"
+                                        className="w-full px-4 py-2 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#EAB139] cursor-pointer"
                                     >
                                         <option value="newest">Newest First</option>
                                         <option value="oldest">Oldest First</option>
@@ -198,8 +198,8 @@ const LibraryClient = ({ initialBooks }: LibraryClientProps) => {
                 {/* Library stats */}
                 {initialBooks.length > 0 && (
                     <div className="mt-16 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                        <h2 className="text-2xl font-semibold text-white mb-6 text-center">
-                            Library Statistics
+                        <h2 className="paytone-one-regular text-3xl font-semibold bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text uppercase mb-10 text-center">
+                            LIBRARY STATISTICS
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="text-center">

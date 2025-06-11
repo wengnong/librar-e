@@ -48,7 +48,7 @@ const page = async () => {
                         onImageSelect={updateProfileImage}
                     />
 
-                    <div className='flex flex-col text-left'> 
+                    <div className='flex flex-col text-center md:text-left'> 
                         <p className='text-black text-lg font-medium'>Name: {session?.user?.name || 'Guest'}</p>
                         <p className='text-black text-lg font-medium'>Email: {session?.user?.email || '-'}</p>
                         <p className='text-black text-lg font-medium'>Books Borrowed: {borrowedBooks.length}</p>
@@ -69,10 +69,10 @@ const page = async () => {
 
             {/* Borrowed books grid */}
             <div className="px-4 md:px-10 mb-10">
-                <h2 className="z-20 paytone-one-regular text-2xl md:text-3xl text-left bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text uppercase mb-8">My Borrowed Books</h2>
+                <h2 className="z-20 paytone-one-regular text-2xl md:text-3xl text-center md:text-left bg-gradient-to-r from-[#EAB139] to-[#E78B48] text-transparent bg-clip-text uppercase mb-8">My Borrowed Books</h2>
 
                 {borrowedBooks.length > 0 ? (
-                    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
+                    <div className="flex flex-wrap gap-20 justify-center md:justify-start">
                         {borrowedBooks.map((book) => (
                             <div
                                 key={book.id}
@@ -85,49 +85,52 @@ const page = async () => {
                                     />
                                 )}
 
-                                <div className="space-y-2 w-full">
+                                <div className="flex flex-col flex-grow space-y-2 w-full">
                                     <h3 className="mt-2 font-semibold text-md text-[#EAB139] line-clamp-2 uppercase paytone-one-regular">
                                         {book.title}
                                     </h3>
-                                    <div className="pt-1 space-y-1 text-xs">
-                                        <p className="text-gray-400">
-                                            <span className="font-medium">Borrowed:</span>{" "}
-                                            {dayjs(book.borrowedAt).format("DD MMM YYYY")}
-                                        </p>
-                                        <p className="text-red-400">
-                                            <span className="font-medium">Due Date:</span>{" "}
-                                            {dayjs(book.dueDate).format("DD MMM YYYY")}
-                                        </p>
+                                    
+                                    <div className="flex flex-col flex-grow justify-end">
+                                        <div className="pt-1 space-y-1 text-xs">
+                                            <p className="text-gray-400">
+                                                <span className="font-medium">Borrowed:</span>{" "}
+                                                {dayjs(book.borrowedAt).format("DD MMM YYYY")}
+                                            </p>
+                                            <p className="text-red-400">
+                                                <span className="font-medium">Due Date:</span>{" "}
+                                                {dayjs(book.dueDate).format("DD MMM YYYY")}
+                                            </p>
 
-                                        {dayjs().isAfter(dayjs(book.dueDate)) ? (
-                                            <Button 
-                                                disabled 
-                                                className='bg-gray-400 w-full cursor-not-allowed opacity-50 transition-all duration-200'
-                                                title="Cannot read overdue book. Please return first."
-                                            >
-                                                LOCKED
-                                            </Button>
-                                        ) : (
-                                            <Link href={book.fileUrl} target="_blank">
-                                                <Button className='bg-[#EAB139] w-full hover:bg-[#ea7a39] cursor-pointer transition-all duration-200'>READ</Button>
-                                            </Link>
-                                        )}
+                                            {dayjs().isAfter(dayjs(book.dueDate)) ? (
+                                                <Button 
+                                                    disabled 
+                                                    className='bg-gray-400 w-full cursor-not-allowed opacity-50 transition-all duration-200'
+                                                    title="Cannot read overdue book. Please return first."
+                                                >
+                                                    LOCKED
+                                                </Button>
+                                            ) : (
+                                                <Link href={book.fileUrl} target="_blank">
+                                                    <Button className='bg-[#EAB139] w-full hover:bg-[#ea7a39] cursor-pointer transition-all duration-200'>READ</Button>
+                                                </Link>
+                                            )}
 
-                                        <div className="flex justify-between items-center pt-2">
-                                            <span
-                                                className={`pointer-events-none px-3 py-2 rounded-full text-[10px] font-medium ${
-                                                    dayjs().isAfter(dayjs(book.dueDate))
-                                                    ? "bg-red-100 text-red-800"
-                                                    : "bg-green-100 text-green-800"
-                                                }`}
-                                            >
-                                                {dayjs().isAfter(dayjs(book.dueDate)) ? "OVERDUE" : "ACTIVE"}
-                                            </span>
+                                            <div className="flex justify-between items-center pt-2">
+                                                <span
+                                                    className={`pointer-events-none px-3 py-2 rounded-full text-[10px] font-medium ${
+                                                        dayjs().isAfter(dayjs(book.dueDate))
+                                                        ? "bg-red-100 text-red-800"
+                                                        : "bg-green-100 text-green-800"
+                                                    }`}
+                                                >
+                                                    {dayjs().isAfter(dayjs(book.dueDate)) ? "OVERDUE" : "ACTIVE"}
+                                                </span>
 
-                                            <ReturnBook 
-                                                borrowRecordId={book.id} 
-                                                bookTitle={book.title}
-                                            />
+                                                <ReturnBook 
+                                                    borrowRecordId={book.id} 
+                                                    bookTitle={book.title}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
