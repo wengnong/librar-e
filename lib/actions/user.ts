@@ -173,3 +173,32 @@ export const getAllBorrowedBooks = async () => {
         };
     }
 };
+
+export const checkUserBookBorrow = async (userId: string, bookId: string) => {
+    try {
+        const existingBorrow = await db
+            .select()
+            .from(borrowRecords)
+            .where(
+                and(
+                    eq(borrowRecords.userId, userId),
+                    eq(borrowRecords.bookId, bookId),
+                    eq(borrowRecords.status, "BORROWED")
+                )
+            )
+            .limit(1);
+
+        return {
+            success: true,
+            isAlreadyBorrowed: existingBorrow.length > 0,
+            data: existingBorrow[0] || null
+        };
+    } catch (error) {
+        console.log("Error checking user book borrow:", error);
+        return {
+            success: false,
+            isAlreadyBorrowed: false,
+            error: "Failed to check borrow status"
+        };
+    }
+};
