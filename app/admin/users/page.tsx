@@ -1,13 +1,44 @@
-import React from 'react';
-import { auth } from '@/auth';
+'use client';
+
+// import { auth } from '@/auth';
+import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { getAllUsers } from '@/lib/actions/user';
-import RoleDropdown from '@/components/RoleDropdown'; // ✅ Import dropdown component
+import RoleDropdown from '@/components/RoleDropdown';
 
-const Page = async () => {
-  const session = await auth();
-  const usersResult = await getAllUsers();
-  const users = usersResult?.success ? usersResult.data : [];
+type User = {
+  id: string;
+  name: string | null;
+  email: string | null;
+  role: 'USER' | 'ADMIN' | null;
+  createdAt: Date | null;
+  lastActivityDate: string | null;
+};
+
+const Page = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [sortedAZ, setSortedAZ] = useState(false);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      // const session = await auth();
+      const usersResult = await getAllUsers();
+      if (usersResult?.success) {
+        setUsers(usersResult.data);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleSortAZ = () => {
+    setSortedAZ(!sortedAZ);
+  };
+
+  const displayedUsers = [...users].sort((a, b) => {
+    if (!sortedAZ) return 0;
+    return (a.name || '').localeCompare(b.name || '');
+  });
 
   return (
     <div className='w-full min-h-screen p-4 md:p-6'>
@@ -20,8 +51,11 @@ const Page = async () => {
 
       <div className='bg-white relative min-h-[400px] rounded-2xl p-4'>
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-4'>
-          <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'>
-            A - Z
+          <button
+            onClick={handleSortAZ}
+            className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'
+          >
+            {sortedAZ ? 'A - Z' : 'A - Z'}
           </button>
         </div>
 
@@ -36,8 +70,8 @@ const Page = async () => {
 
         {/* Table body */}
         <div className='w-full'>
-          {users && users.length > 0 ? (
-            users.map((user, index) => (
+          {displayedUsers.length > 0 ? (
+            displayedUsers.map((user, index) => (
               <div
                 key={user.id || index}
                 className={`w-full grid grid-cols-2 sm:grid-cols-5 items-center h-16 px-6 text-center border-b border-gray-200 hover:bg-gray-50 transition-colors ${
@@ -48,7 +82,6 @@ const Page = async () => {
                 <p className='text-black text-sm truncate'>{user.email || 'N/A'}</p>
                 <div className='text-black text-sm flex justify-center'>
                   <RoleDropdown userId={user.id} currentRole={user.role ?? null} />
-
                 </div>
                 <p className='text-black text-sm'>
                   {user.lastActivityDate
