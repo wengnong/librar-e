@@ -266,3 +266,98 @@ export const deleteUserByNameAndEmail = async (username: string, email: string) 
         };
     }
 };
+
+export const deleteBorrowRecordByUsernameAndBookTitle = async (username: string, bookTitle: string) => {
+    try {
+        // First, find the user by username
+        const user = await db
+            .select({ id: users.id })
+            .from(users)
+            .where(eq(users.username, username))
+            .limit(1);
+
+        if (user.length === 0) {
+            return {
+                success: false,
+                message: 'User not found with the provided username'
+            };
+        }
+
+        // Then, find the book by title
+        const book = await db
+            .select({ id: books.id })
+            .from(books)
+            .where(eq(books.title, bookTitle))
+            .limit(1);
+
+        if (book.length === 0) {
+            return {
+                success: false,
+                message: 'Book not found with the provided title'
+            };
+        }
+
+        const userId = user[0].id;
+        const bookId = book[0].id;
+
+        // Check if the borrow record exists
+        const existingBorrowRecord = await db
+            .select()
+            .from(borrowRecords)
+            .where(
+                and(
+                    eq(borrowRecords.userId, userId),
+                    eq(borrowRecords.bookId, bookId)
+                )
+            )
+            .limit(1);
+
+        if (existingBorrowRecord.length === 0) {
+            return {
+                success: false,
+                message: 'No borrow record found for this user and book combination'
+            };
+        }
+
+        // Delete the borrow record
+        const deletedBorrowRecord = await db
+            .delete(borrowRecords)
+            .where(
+                and(
+                    eq(borrowRecords.userId, userId),
+                    eq(borrowRecords.bookId, bookId)
+                )
+            )
+            .returning({
+                id: borrowRecords.id,
+                userId: borrowRecords.userId,
+                bookId: borrowRecords.bookId,
+                status: borrowRecords.status,
+                borrowDate: borrowRecords.borrowDate,
+                dueDate: borrowRecords.dueDate
+            });
+
+        if (deletedBorrowRecord.length === 0) {
+            return {
+                success: false,
+                message: 'Failed to delete borrow record'
+            };
+        }
+
+        return {
+            success: true,
+            message: 'Borrow record deleted successfully',
+            data: {
+                username,
+                bookTitle,
+                deletedRecord: deletedBorrowRecord[0]
+            }
+        };
+    } catch (error) {
+        console.error('Delete borrow record error:', error);
+        return {
+            success: false,
+            message: 'Failed to delete borrow record'
+        };
+    }
+};

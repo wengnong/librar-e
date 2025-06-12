@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { getAllBorrowedBooks } from '@/lib/actions/user'
+import Link from 'next/link';
 
 type BorrowedBook = {
     id: string;
@@ -69,6 +70,13 @@ const Page = () => {
                     >
                         {sortedAZ ? 'A - Z' : 'A - Z'}
                     </button>
+
+                    <Link
+                        href="/admin/borrowed-books/delete"
+                        className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-red-600 hover:text-white'
+                    >
+                        Delete User Records
+                    </Link>
                 </div>
 
                 {/* Table header */}
