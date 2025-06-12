@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Librar-E: Book Borrowing Website
+
+**Librar-E** is a modern e-library platform designed to streamline how users browse, borrow, and manage books online. Developed as a full-stack web application, it offers secure authentication, a responsive user interface, and powerful admin tools for digital library management.
+
+Live Website: *(deployment link later)*
+
+---
+
+## Key Features
+
+- **Authentication**: Both users and admins can register and log in to access their respective dashboard experiences.
+- **Book Borrowing**: Users can borrow books based on their preferences, complete with search and filtering functionalities.
+- **In-App Reading**: After borrowing, users can read books directly within the app for up to 14 days before access is restricted.
+- **Book Returns**: Users can return borrowed books manually. Once the due date passes, access is automatically locked until the book is returned.
+- **Admin Dashboard**: Admins have full access to manage all users and books through a separate control panel interface.
+- **CRUD Operations**: Admins can Create, Read, Update, and Delete any book or user data within the system.
+
+---
+
+## Tech Stack
+
+### Frontend
+- Next.js
+- Tailwind CSS
+- Shadcn UI
+
+### Backend / Database
+- Neon DB (PostgreSQL)
+- Drizzle ORM
+
+### Authentication & Storage
+- Auth.js
+- Google Drive
+
+---
+
+## Prerequisites
+
+Before starting, make sure you have the following installed:
+- Node.js and npm
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to run the project locally:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/wengnong/librar-e.git
+   cd librar-e
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install Dependencies**
+   ```bash
+   npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run the Development Server**
+   ```bash
+   npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Open your browser and go to **http://localhost:3000**
