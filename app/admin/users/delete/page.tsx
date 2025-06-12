@@ -61,6 +61,15 @@ const DeleteUserPage = () => {
           >
             {isSubmitting ? 'Deleting...' : 'Confirm Delete'}
           </Button>
+
+          <Button
+              onClick={() => router.back()}
+              variant="outline"
+              className="w-full"
+              disabled={isSubmitting}
+              >
+                Cancel
+          </Button>
         </div>
       </div>
     </div>
