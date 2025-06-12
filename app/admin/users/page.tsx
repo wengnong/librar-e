@@ -1,10 +1,10 @@
 'use client';
 
-// import { auth } from '@/auth';
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { getAllUsers } from '@/lib/actions/user';
 import RoleDropdown from '@/components/RoleDropdown';
+import Link from 'next/link';
 
 type User = {
   id: string;
@@ -18,21 +18,56 @@ type User = {
 const Page = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [sortedAZ, setSortedAZ] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
+  const [deleteName, setDeleteName] = useState('');
+  const [deleteEmail, setDeleteEmail] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
-      // const session = await auth();
       const usersResult = await getAllUsers();
       if (usersResult?.success) {
         setUsers(usersResult.data);
       }
     };
-
     fetchUsers();
   }, []);
 
   const handleSortAZ = () => {
     setSortedAZ(!sortedAZ);
+  };
+
+  const handleConfirmDelete = async () => {
+    const matchedUser = users.find(
+      (u) => u.name === deleteName && u.email === deleteEmail
+    );
+
+    if (!matchedUser) {
+      alert('No matching user found!');
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/delete-user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: matchedUser.id }),
+      });
+
+      if (res.ok) {
+        alert('User deleted successfully!');
+        setUsers(users.filter((u) => u.id !== matchedUser.id));
+        setDeleteMode(false);
+        setDeleteName('');
+        setDeleteEmail('');
+      } else {
+        alert('Failed to delete user.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while deleting the user.');
+    }
   };
 
   const displayedUsers = [...users].sort((a, b) => {
@@ -50,14 +85,24 @@ const Page = () => {
       </div>
 
       <div className='bg-white relative min-h-[400px] rounded-2xl p-4'>
+        {/* Buttons */}
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-4'>
           <button
             onClick={handleSortAZ}
             className='cursor-pointer h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'
           >
-            {sortedAZ ? 'A - Z' : 'A - Z'}
+            A - Z
           </button>
+
+          <Link
+            href="/admin/users/delete"
+            className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-red-600 hover:text-white'
+          >
+            Delete User
+        </Link>
         </div>
+
+        
 
         {/* Table header */}
         <div className='w-full overflow-hidden bg-[#8196AE] grid grid-cols-2 sm:grid-cols-5 items-center h-14 px-6 mt-4 rounded-t-lg text-center'>

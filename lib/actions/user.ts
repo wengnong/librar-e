@@ -202,3 +202,67 @@ export const checkUserBookBorrow = async (userId: string, bookId: string) => {
         };
     }
 };
+
+export const deleteUserByNameAndEmail = async (username: string, email: string) => {
+    try {
+        // First, check if user exists with the provided username and email
+        const userToDelete = await db
+            .select()
+            .from(users)
+            .where(
+                and(
+                    eq(users.username, username),
+                    eq(users.email, email)
+                )
+            )
+            .limit(1);
+
+        if (userToDelete.length === 0) {
+            return {
+                success: false,
+                message: 'User not found with the provided username and email'
+            };
+        }
+
+        const userId = userToDelete[0].id;
+
+        // Delete related borrow records first (foreign key constraint)
+        await db
+            .delete(borrowRecords)
+            .where(eq(borrowRecords.userId, userId));
+
+        // Then delete the user
+        const deletedUser = await db
+            .delete(users)
+            .where(
+                and(
+                    eq(users.username, username),
+                    eq(users.email, email)
+                )
+            )
+            .returning({
+                id: users.id,
+                username: users.username,
+                email: users.email
+            });
+
+        if (deletedUser.length === 0) {
+            return {
+                success: false,
+                message: 'Failed to delete user'
+            };
+        }
+
+        return {
+            success: true,
+            message: 'User and related records deleted successfully',
+            data: deletedUser[0]
+        };
+    } catch (error) {
+        console.error('Delete user error:', error);
+        return {
+            success: false,
+            message: 'Failed to delete user'
+        };
+    }
+};
