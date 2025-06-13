@@ -2,7 +2,7 @@
 
 **Librar-E** is a modern e-library platform designed to streamline how users browse, borrow, and manage books online. Developed as a full-stack web application, it offers secure authentication, a responsive user interface, and powerful admin tools for digital library management.
 
-Live Website: *(deployment link later)*
+Live Website: **https://librar-e.vercel.app/**
 
 ---
 
@@ -20,15 +20,18 @@ Live Website: *(deployment link later)*
 ## Tech Stack
 
 ### Frontend
+
 - Next.js
 - Tailwind CSS
 - Shadcn UI
 
 ### Backend / Database
+
 - Neon DB (PostgreSQL)
 - Drizzle ORM
 
 ### Authentication & Storage
+
 - Auth.js
 - Google Drive
 
@@ -37,6 +40,7 @@ Live Website: *(deployment link later)*
 ## Prerequisites
 
 Before starting, make sure you have the following installed:
+
 - Node.js and npm
 
 ---
@@ -46,16 +50,22 @@ Before starting, make sure you have the following installed:
 Follow these steps to run the project locally:
 
 1. **Clone the repository**
+
    ```bash
+
    git clone https://github.com/wengnong/librar-e.git
    cd librar-e
 
 2. **Install Dependencies**
+
    ```bash
+
    npm install
 
 3. **Run the Development Server**
+
    ```bash
+
    npm run dev
 
 4. Open your browser and go to **http://localhost:3000**
