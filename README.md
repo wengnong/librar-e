@@ -62,7 +62,7 @@ Follow these steps to run the project locally:
 
    npm install
 
-3. **Make an .env.local file and add these variables**
+3. **Make an .env.local file on root and add these variables**
 
    Note: To get the keys to fill the variables below, you can contact me in person since they are confidential
 
