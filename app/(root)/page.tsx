@@ -1,4 +1,3 @@
-import { auth } from "@/auth"
 import About from "@/components/home/About"
 import Featured from "@/components/home/Featured"
 import Header from "@/components/home/Header"
@@ -30,7 +29,7 @@ const Home = async () => {
     return (
         <>
             <div className='relative'>
-                <Header />
+                <Header books={allBooks}  />
                 <Featured
                     {...allBooks[0]}
                 />
