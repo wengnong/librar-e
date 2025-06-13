@@ -62,7 +62,7 @@ const ProfileImageSelector: React.FC<ProfileImageSelectorProps> = ({
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit bg-[#EAB139] border-gray-200 shadow-lg p-4">
-          <DropdownMenuLabel className="text-xl text-gray-700 mb-2 passion-one-regular pointer-events-none">Choose Profile Image</DropdownMenuLabel>
+          <DropdownMenuLabel className="text-xl text-center text-white mb-2 passion-one-regular pointer-events-none uppercase">Choose Profile Image</DropdownMenuLabel>
           <div className="grid grid-cols-3 gap-4">
             {profileImages.map((image) => (
               <div 

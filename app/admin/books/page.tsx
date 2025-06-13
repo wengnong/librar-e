@@ -130,13 +130,13 @@ const Page = () => {
         <div className='flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-4'>
           <button
             onClick={handleSortAZ}
-            className='cursor-pointer h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'
+            className='cursor-pointer h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#532ed9] hover:text-white'
           >
-            {sortedAZ ? 'A - Z' : 'A - Z'}
+            {sortedAZ ? 'Reset' : 'A - Z'}
           </button>
           <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'>
             <Link href="/admin/books/new">
-              Add New Books +
+              Add New Book
             </Link>
           </button>
         </div>
