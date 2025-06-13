@@ -12,15 +12,12 @@ type User = {
   email: string | null;
   role: 'USER' | 'ADMIN' | null;
   createdAt: Date | null;
-  lastActivityDate: string | null;
+  lastActivityDate: Date | null;
 };
 
 const Page = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [sortedAZ, setSortedAZ] = useState(false);
-  const [deleteMode, setDeleteMode] = useState(false);
-  const [deleteName, setDeleteName] = useState('');
-  const [deleteEmail, setDeleteEmail] = useState('');
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -34,40 +31,6 @@ const Page = () => {
 
   const handleSortAZ = () => {
     setSortedAZ(!sortedAZ);
-  };
-
-  const handleConfirmDelete = async () => {
-    const matchedUser = users.find(
-      (u) => u.name === deleteName && u.email === deleteEmail
-    );
-
-    if (!matchedUser) {
-      alert('No matching user found!');
-      return;
-    }
-
-    try {
-      const res = await fetch('/api/delete-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: matchedUser.id }),
-      });
-
-      if (res.ok) {
-        alert('User deleted successfully!');
-        setUsers(users.filter((u) => u.id !== matchedUser.id));
-        setDeleteMode(false);
-        setDeleteName('');
-        setDeleteEmail('');
-      } else {
-        alert('Failed to delete user.');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('An error occurred while deleting the user.');
-    }
   };
 
   const displayedUsers = [...users].sort((a, b) => {
