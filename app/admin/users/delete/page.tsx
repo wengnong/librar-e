@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { deleteUserByNameAndEmail } from '@/lib/actions/user'; // You should implement this
+import { deleteUserByNameAndEmail } from '@/lib/actions/user';
 
 const DeleteUserPage = () => {
   const router = useRouter();
