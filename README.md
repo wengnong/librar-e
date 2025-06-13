@@ -62,10 +62,23 @@ Follow these steps to run the project locally:
 
    npm install
 
-3. **Run the Development Server**
+3. **Make an .env.local file and add these variables**
+
+   Note: To get the keys to fill the variables below, you can contact me in person since they are confidential
+
+   ```bash
+
+   NEXT_PUBLIC_API_ENDPOINT=
+   NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT=
+   NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY=
+   IMAGEKIT_PRIVATE_KEY=
+   DATABASE_URL=
+   AUTH_SECRET=
+
+5. **Run the Development Server**
 
    ```bash
 
    npm run dev
 
-4. Open your browser and go to **http://localhost:3000**
+6. Open your browser and go to **http://localhost:3000**
