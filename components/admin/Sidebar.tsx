@@ -30,10 +30,10 @@ const Sidebar = ({ session }: { session: Session }) => {
     <div className='w-full md:w-55 bg-[#041224] text-white h-full md:min-h-screen'>
       <Link href='/'>
         <Image
-          className='flex pt-4 pl-4'
+          className='flex pt-4 pl-4 w-[140px] h-auto'
           src='/images/Logo.png'
-          width={140}
-          height={140}
+          width={4000}
+          height={0}
           alt='Librar-E Logo'
         />
       </Link>
