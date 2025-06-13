@@ -74,6 +74,14 @@ const Page = () => {
         return 'bg-red-100 text-red-800'
       case 'literary fiction':
         return 'bg-pink-100 text-pink-800'
+      case 'science fiction':
+        return 'bg-cyan-100 text-cyan-800'
+      case 'horror':
+        return 'bg-amber-100 text-amber-800'
+      case 'mystery':
+        return 'bg-indigo-100 text-indigo-800'
+      case 'romance':
+        return 'bg-rose-100 text-rose-800'
       case 'adventure':
         return 'bg-green-100 text-green-800'
       case 'non-fiction':
@@ -134,7 +142,7 @@ const Page = () => {
           >
             {sortedAZ ? 'Reset' : 'A - Z'}
           </button>
-          <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#d99e2e]'>
+          <button className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-[#03e775] cursor-pointer'>
             <Link href="/admin/books/new">
               Add New Book
             </Link>

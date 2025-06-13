@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { deleteBorrowRecordByUsernameAndBookTitle } from '@/lib/actions/user';
+import Link from 'next/link';
 
 const DeleteBorrowRecordPage = () => {
   const router = useRouter();
@@ -54,8 +55,18 @@ const DeleteBorrowRecordPage = () => {
     <div className="w-full min-h-screen p-6">
       <div className='flex flex-col md:flex-row justify-between gap-5 mb-6'>
         <div className='bg-white rounded-2xl p-5 w-full shadow-sm'>
-          <p className='text-black text-lg font-medium'>Delete Borrow Record</p>
-          <p className='text-gray-600 text-sm mt-1'>Remove A Borrowing Record From The Database</p>
+          <div className='flex items-center justify-between'>
+            <div>
+              <p className='text-black text-lg font-medium'>Delete Borrow Record</p>
+              <p className='text-gray-600 text-sm mt-1'>Remove A Borrowing Record From The Database</p>
+            </div>
+            <Link 
+                href="/admin/borrowed-books" 
+                className="text-gray-600 hover:text-gray-800 transition"
+            >
+                ← Back to Borrowed Records
+            </Link>
+          </div>
         </div>
       </div>
       
@@ -102,18 +113,18 @@ const DeleteBorrowRecordPage = () => {
             </div>
           )}
 
-          <Button
+          <button
             onClick={handleDelete}
             disabled={isSubmitting || !username.trim() || !bookTitle.trim()}
-            className="bg-red-500 hover:bg-red-600 text-white w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-red-500 hover:bg-red-700 text-white text-sm w-full rounded-md py-2 px-4 cursor-pointer"
           >
             {isSubmitting ? 'Deleting...' : 'Confirm Delete'}
-          </Button>
+          </button>
 
           <Button
             onClick={() => router.back()}
             variant="outline"
-            className="w-full"
+            className="w-full cursor-pointer hover:bg-gray-100"
             disabled={isSubmitting}
           >
             Cancel
