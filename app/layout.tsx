@@ -10,6 +10,20 @@ import { auth } from "@/auth";
 export const metadata: Metadata = {
   title: "Librar-E",
   description: "Read anywhere, everywhere.",
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/images/logo-only.png',
+        href: '/images/logo-only.png',
+      },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/images/logo-only.png',
+        href: '/images/logo-only.png',
+      },
+    ],
+  }
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
