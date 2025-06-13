@@ -24,12 +24,35 @@ const Page = () => {
         const fetchBorrowedBooks = async () => {
             const booksResult = await getAllBorrowedBooks();
             if (booksResult?.success) {
-                setBorrowedBooks(booksResult.data);
+                // Update status based on current date
+                const updatedBooks = booksResult.data.map(book => {
+                    const currentStatus = getCurrentStatus(book);
+                    return {
+                        ...book,
+                        status: currentStatus
+                    };
+                });
+                setBorrowedBooks(updatedBooks);
             }
         };
 
         fetchBorrowedBooks();
     }, []);
+
+    // Function to determine current status based on dates
+    const getCurrentStatus = (book: BorrowedBook) => {
+        // If already returned, keep it as returned
+        if (book.status === 'RETURNED') {
+            return 'RETURNED';
+        }
+
+        // Check if overdue        
+        if (dayjs().isAfter(dayjs(book.dueDate), 'day')) {
+            return 'OVERDUE';
+        }
+        
+        return 'BORROWED';
+    };
 
     const handleSortAZ = () => {
         setSortedAZ(!sortedAZ);
@@ -57,7 +80,7 @@ const Page = () => {
         <div className='w-full min-h-screen p-4 md:p-6'>
             <div className='flex flex-col md:flex-row justify-between gap-5 mb-6'>
                 <div className='bg-white rounded-2xl p-5 w-full shadow-sm'>
-                    <p className='text-black text-lg font-medium'>Borrowed Books Dashboard</p>
+                    <p className='text-black text-lg font-medium'>Borrowed Records Dashboard</p>
                     <p className='text-gray-600 text-sm mt-1'>Total Records: {borrowedBooks?.length || 0}</p>
                 </div>
             </div>
@@ -75,7 +98,7 @@ const Page = () => {
                         href="/admin/borrowed-books/delete"
                         className='h-8 flex items-center justify-center bg-[#EAB139] text-black text-sm font-medium px-6 rounded-lg transition hover:bg-red-600 hover:text-white'
                     >
-                        Delete User Records
+                        Delete Record
                     </Link>
                 </div>
 
@@ -95,6 +118,8 @@ const Page = () => {
                         displayedBooks.map((book, index) => {
                             const daysLeft = dayjs(book.dueDate).diff(dayjs(), 'day');
                             const isOverdue = daysLeft < 0;
+
+                            const currentStatus = getCurrentStatus(book);
                             
                             return (
                                 <div
@@ -116,15 +141,15 @@ const Page = () => {
                                             : 'N/A'}
                                     </p>
                                     <div className='flex justify-center'>
-                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(book.status)}`}>
-                                            {book.status}
+                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(currentStatus)}`}>
+                                            {currentStatus}
                                         </span>
                                     </div>
                                     <p className={`text-sm font-medium ${
                                         isOverdue ? 'text-red-600' : 
                                         daysLeft <= 3 ? 'text-orange-600' : 'text-green-600'
                                     }`}>
-                                        {book.status === 'RETURNED' ? 'Returned' : 
+                                        {currentStatus === 'RETURNED' ? 'Returned' : 
                                             isOverdue ? `${Math.abs(daysLeft)} days overdue` : 
                                             `${daysLeft} days left`}
                                     </p>

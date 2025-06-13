@@ -101,7 +101,7 @@ const page = async () => {
                                                 {dayjs(book.dueDate).format("DD MMM YYYY")}
                                             </p>
 
-                                            {dayjs().isAfter(dayjs(book.dueDate)) ? (
+                                            {dayjs().isAfter(dayjs(book.dueDate), 'day') ? (
                                                 <Button 
                                                     disabled 
                                                     className='bg-gray-400 w-full cursor-not-allowed opacity-50 transition-all duration-200'
@@ -118,12 +118,12 @@ const page = async () => {
                                             <div className="flex justify-between items-center pt-2">
                                                 <span
                                                     className={`pointer-events-none px-3 py-2 rounded-full text-[10px] font-medium ${
-                                                        dayjs().isAfter(dayjs(book.dueDate))
+                                                        dayjs().isAfter(dayjs(book.dueDate), 'day')
                                                         ? "bg-red-100 text-red-800"
                                                         : "bg-green-100 text-green-800"
                                                     }`}
                                                 >
-                                                    {dayjs().isAfter(dayjs(book.dueDate)) ? "OVERDUE" : "ACTIVE"}
+                                                    {dayjs().isAfter(dayjs(book.dueDate), 'day') ? "OVERDUE" : "ACTIVE"}
                                                 </span>
 
                                                 <ReturnBook 
