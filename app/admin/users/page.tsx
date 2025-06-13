@@ -79,7 +79,7 @@ const Page = () => {
     <div className='w-full min-h-screen p-4 md:p-6'>
       <div className='flex flex-col md:flex-row justify-between gap-5 mb-6'>
         <div className='bg-white rounded-2xl p-5 w-full shadow-sm'>
-          <p className='text-black text-lg font-medium'>User Dashboard</p>
+          <p className='text-black text-lg font-medium'>Users Dashboard</p>
           <p className='text-gray-600 text-sm mt-1'>Total Users: {users?.length || 0}</p>
         </div>
       </div>
