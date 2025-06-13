@@ -31,13 +31,13 @@ const DeleteUserPage = () => {
         <div className='flex flex-col md:flex-row justify-between gap-5 mb-6'>
         <div className='bg-white rounded-2xl p-5 w-full shadow-sm'>
           <p className='text-black text-lg font-medium'>Delete User</p>
-          <p className='text-gray-600 text-sm mt-1'>Remove A User's Account From The Database</p>
+          <p className='text-gray-600 text-sm mt-1'>Remove User&apos; Account From The Database</p>
         </div>
       </div>
       <div className="max-w-xl mx-auto bg-white shadow-md rounded-xl p-6">
         <h1 className="text-xl font-semibold mb-4">Delete User</h1>
         <p className="text-gray-600 mb-6">
-          Please confirm the user's name and email before deletion.
+          Please confirm the user&apos; name and email before deletion.
         </p>
 
         <div className="space-y-4">
